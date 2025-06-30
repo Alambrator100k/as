@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السيرة الذاتية - أيمن أبوزيد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px 20px;
+        }
+        
+        #profile-img {
+            max-width: 200px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px red;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .description {
+            text-align: center;
+            padding: 0 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #00ff00;
+            padding: 5px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .social-links a img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .social-links a:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        }
+        
+        #counter {
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+            margin: 15px 0;
+        }
+        
+        #comments {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            margin: 10px 0;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        button[type="submit"] {
+            background: linear-gradient(45deg, #ff3366, #8822ff);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            margin: 15px auto;
+            transition: all 0.3s;
+        }
+        
+        button[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(136, 34, 255, 0.4);
+        }
+        
+        .comments-section {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 700px;
+        }
+        
+        .comments-section pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .team-logo {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            animation: logoGlow 3s infinite alternate;
+        }
+        
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 5px red; }
+            50% { text-shadow: 0 0 15px blue; }
+            100% { text-shadow: 0 0 5px gold; }
+        }
+    </style>
+</head>
+<body>
+    <div class="team-logo">AS</div>
+    
+    <header>
+        <img id="profile-img" src="img.jpg" alt="صورة أيمن">
+        <h1>أيمن أبوزيد (الامبراطور)</h1>
+    </header>
+    
+    <div class="description">
+        <p>انا ايمن ابوذيد من مصر محافظة الاسكندريه تاريخ ميلادي 2007/11/12.<br>
+        هواياتي التطور التكنولوجي وتجربه الاختراق الاخلاقي وتعلم الامن السيبراني<br>
+        والحفاظ علي امن المعلومات وتطوير برمجيات لغه بايثون.</p>
+    </div>
+    
+    <div class="social-links">
+        <a href="https://youtube.com/@alambrator_as?si=AxHk4jU5pw-KGo-R" target="_blank">
+            <img src="https://img.icons8.com/color/96/000000/youtube-play.png" alt="يوتيوب">
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vasyo14F6sn0brA3PY0T" target="_blank">
+            <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="واتساب">
+        </a>
+        <a href="https://github.com/Alambrator100k" target="_blank">
+            <img src="https://img.icons8.com/ios-glyphs/96/000000/github.png" alt="جيت هاب">
+        </a>
+        <a href="https://t.me/as_bot_as" target="_blank">
+            <img src="https://img.icons8.com/color/96/000000/telegram-app.png" alt="تلجرام">
+        </a>
+        <a href="https://alambratoras.blogspot.com/?m=1" target="_blank">
+            <img src="https://img.icons8.com/color/96/000000/blogger.png" alt="بلوجر">
+        </a>
+    </div>
+    
+    <div id="counter">عدد الزيارات: <span id="visit-count">0</span></div>
+    
+    <div id="comments">
+        <h3 style="text-align: center;">أضف تعليق:</h3>
+        <form id="comment-form">
+            <textarea name="comment" required placeholder="اكتب تعليقك هنا..."></textarea>
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
+    
+    <div class="comments-section">
+        <h3 style="text-align: center;">التعليقات:</h3>
+        <pre id="comments-display">لا توجد تعليقات حتى الآن</pre>
+    </div>
+    
+    <canvas id="matrix"></canvas>
+    
+    <script>
+        // تأثير المصفوفة
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        const chars = "@alambrator_AS//×÷√5^8g83gi#4gas*クkツ?フ&ユ#6g7je3#7%9%o~ベ0u7*#ソyノ$モ7ョロ/~»»AS";
+        const fontSize = 12;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0f0';
+            ctx.font = `${fontSize}px monospace`;
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+
+        // عداد الزيارات (يستخدم localStorage للتخزين المحلي)
+        function updateVisitCount() {
+            let visits = localStorage.getItem('visits');
+            if (!visits) {
+                visits = 0;
+            }
+            visits = parseInt(visits) + 1;
+            localStorage.setItem('visits', visits);
+            document.getElementById('visit-count').textContent = visits;
+        }
+
+        // إدارة التعليقات (يستخدم localStorage للتخزين المحلي)
+        function loadComments() {
+            const comments = localStorage.getItem('comments');
+            if (comments) {
+                document.getElementById('comments-display').textContent = comments;
+            }
+        }
+
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const commentText = this.comment.value.trim();
+            if (commentText) {
+                const now = new Date().toLocaleString('ar-EG');
+                let existingComments = localStorage.getItem('comments') || 'لا توجد تعليقات حتى الآن';
+                if (existingComments === 'لا توجد تعليقات حتى الآن') {
+                    existingComments = '';
+                }
+                const newComment = `[${now}] ${commentText}\n`;
+                localStorage.setItem('comments', existingComments + newComment);
+                this.comment.value = '';
+                loadComments();
+            }
+        });
+
+        // تهيئة الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            updateVisitCount();
+            loadComments();
+        });
+    </script>
+</body>
+</html>
