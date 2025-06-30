@@ -156,6 +156,22 @@
             50% { text-shadow: 0 0 15px blue; }
             100% { text-shadow: 0 0 5px gold; }
         }
+        
+        .comment-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .comment-date {
+            color: #aaa;
+            font-size: 0.8em;
+            margin-bottom: 5px;
+        }
+        
+        .comment-text {
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -202,7 +218,7 @@
     
     <div class="comments-section">
         <h3 style="text-align: center;">التعليقات:</h3>
-        <pre id="comments-display">لا توجد تعليقات حتى الآن</pre>
+        <div id="comments-display">لا توجد تعليقات حتى الآن</div>
     </div>
     
     <canvas id="matrix"></canvas>
@@ -255,25 +271,119 @@
             document.getElementById('visit-count').textContent = visits;
         }
 
-        // إدارة التعليقات (يستخدم localStorage للتخزين المحلي)
+        // إدارة التعليقات وإرسالها إلى بوت تليجرام
+        const BOT_TOKEN = '7144838322:AAGKviMrikld9z5Puxuk6eAu5AmSYQ2jxuQ';
+        const CHAT_ID = '6113061454';
+        
         function loadComments() {
             const comments = localStorage.getItem('comments');
-            if (comments) {
-                document.getElementById('comments-display').textContent = comments;
+            const commentsDisplay = document.getElementById('comments-display');
+            
+            if (!comments || comments === '[]') {
+                commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
+                return;
+            }
+            
+            try {
+                const commentsArray = JSON.parse(comments);
+                if (commentsArray.length === 0) {
+                    commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
+                    return;
+                }
+                
+                commentsDisplay.innerHTML = '';
+                commentsArray.forEach(comment => {
+                    const commentDiv = document.createElement('div');
+                    commentDiv.className = 'comment-item';
+                    
+                    const dateDiv = document.createElement('div');
+                    dateDiv.className = 'comment-date';
+                    dateDiv.textContent = comment.date;
+                    
+                    const textDiv = document.createElement('div');
+                    textDiv.className = 'comment-text';
+                    textDiv.textContent = comment.text;
+                    
+                    commentDiv.appendChild(dateDiv);
+                    commentDiv.appendChild(textDiv);
+                    commentsDisplay.appendChild(commentDiv);
+                });
+            } catch (e) {
+                commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
             }
         }
 
-        document.getElementById('comment-form').addEventListener('submit', function(e) {
+        async function sendToTelegram(commentText) {
+            const now = new Date();
+            const formattedDate = now.toLocaleString('ar-EG', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            const message = `تعليق جديد:\n${commentText}\n\nالتاريخ: ${formattedDate}`;
+            
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+                
+                const data = await response.json();
+                if (!data.ok) {
+                    console.error('Failed to send message to Telegram:', data);
+                }
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+            }
+        }
+
+        document.getElementById('comment-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const commentText = this.comment.value.trim();
             if (commentText) {
-                const now = new Date().toLocaleString('ar-EG');
-                let existingComments = localStorage.getItem('comments') || 'لا توجد تعليقات حتى الآن';
-                if (existingComments === 'لا توجد تعليقات حتى الآن') {
-                    existingComments = '';
+                const now = new Date();
+                const formattedDate = now.toLocaleString('ar-EG', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
+                // إرسال التعليق إلى تليجرام
+                await sendToTelegram(commentText);
+                
+                // حفظ التعليق محلياً
+                let existingComments = localStorage.getItem('comments');
+                if (!existingComments || existingComments === '[]') {
+                    existingComments = [];
+                } else {
+                    try {
+                        existingComments = JSON.parse(existingComments);
+                    } catch {
+                        existingComments = [];
+                    }
                 }
-                const newComment = `[${now}] ${commentText}\n`;
-                localStorage.setItem('comments', existingComments + newComment);
+                
+                const newComment = {
+                    text: commentText,
+                    date: formattedDate
+                };
+                
+                existingComments.push(newComment);
+                localStorage.setItem('comments', JSON.stringify(existingComments));
                 this.comment.value = '';
                 loadComments();
             }
@@ -286,4 +396,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
