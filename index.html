@@ -18,23 +18,40 @@
             color: #fff;
             line-height: 1.6;
             overflow-x: hidden;
+            perspective: 1000px;
+            height: 100vh;
+        }
+        
+        .scene {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            position: relative;
         }
         
         header {
             text-align: center;
             padding: 30px 20px 20px;
+            transform: translateZ(50px);
         }
         
         #profile-img {
             max-width: 200px;
             border-radius: 50px;
             box-shadow: 0 0 20px red;
+            transition: transform 0.5s;
+        }
+        
+        #profile-img:hover {
+            transform: rotateY(20deg) scale(1.05);
         }
         
         h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
             color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
         
         .description {
@@ -42,6 +59,11 @@
             padding: 0 20px;
             margin: 20px auto;
             max-width: 800px;
+            transform: translateZ(30px);
+            background: rgba(0,0,0,0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(0,255,0,0.3);
         }
         
         .social-links {
@@ -50,6 +72,7 @@
             gap: 15px;
             margin: 25px 0;
             flex-wrap: wrap;
+            transform: translateZ(40px);
         }
         
         .social-links a {
@@ -61,6 +84,7 @@
             padding: 5px;
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
             transition: all 0.3s;
+            transform-style: preserve-3d;
         }
         
         .social-links a img {
@@ -71,8 +95,60 @@
         }
         
         .social-links a:hover {
-            transform: scale(1.15);
+            transform: scale(1.15) rotateY(20deg);
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        }
+        
+        /* أزرار التواصل */
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            transform-style: preserve-3d;
+            min-width: 180px;
+            justify-content: center;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+        }
+        
+        .telegram-btn {
+            background: #0088cc;
+            box-shadow: 0 0 15px rgba(0, 136, 204, 0.5);
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .whatsapp-btn:hover {
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.8);
+        }
+        
+        .telegram-btn:hover {
+            box-shadow: 0 5px 20px rgba(0, 136, 204, 0.8);
+        }
+        
+        .contact-btn img {
+            width: 24px;
+            height: 24px;
         }
         
         #counter {
@@ -80,12 +156,14 @@
             font-size: 14px;
             color: #aaa;
             margin: 15px 0;
+            transform: translateZ(20px);
         }
         
         #comments {
             max-width: 600px;
             margin: 0 auto 40px;
             padding: 0 20px;
+            transform: translateZ(30px);
         }
         
         textarea {
@@ -98,6 +176,13 @@
             margin: 10px 0;
             resize: vertical;
             min-height: 100px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        textarea:focus {
+            transform: translateZ(20px);
+            box-shadow: 0 0 20px rgba(0,255,255,0.5);
+            outline: none;
         }
         
         button[type="submit"] {
@@ -111,10 +196,11 @@
             display: block;
             margin: 15px auto;
             transition: all 0.3s;
+            transform-style: preserve-3d;
         }
         
         button[type="submit"]:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) rotateX(10deg);
             box-shadow: 0 5px 15px rgba(136, 34, 255, 0.4);
         }
         
@@ -124,6 +210,12 @@
             padding: 20px;
             margin: 30px auto;
             max-width: 700px;
+            transform: translateZ(20px);
+            transition: transform 0.5s;
+        }
+        
+        .comments-section:hover {
+            transform: translateZ(30px) rotateX(5deg);
         }
         
         .comments-section pre {
@@ -141,7 +233,7 @@
             height: 100%;
         }
         
-        .team-logo {
+        .theme-switcher {
             position: fixed;
             top: 15px;
             right: 15px;
@@ -149,18 +241,59 @@
             font-weight: bold;
             color: #fff;
             animation: logoGlow 3s infinite alternate;
+            transform: translateZ(100px);
+            cursor: pointer;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+        
+        .theme-switcher:hover {
+            animation: logoGlowHover 1s infinite alternate, float 3s ease-in-out infinite;
+            transform: translateZ(100px) scale(1.1);
+            box-shadow: 0 0 30px rgba(255,255,255,0.5);
         }
         
         @keyframes logoGlow {
-            0% { text-shadow: 0 0 5px red; }
-            50% { text-shadow: 0 0 15px blue; }
-            100% { text-shadow: 0 0 5px gold; }
+            0% { text-shadow: 0 0 5px red; transform: translateZ(100px) rotateY(0deg); }
+            50% { text-shadow: 0 0 15px blue; transform: translateZ(100px) rotateY(180deg); }
+            100% { text-shadow: 0 0 5px gold; transform: translateZ(100px) rotateY(360deg); }
+        }
+        
+        @keyframes logoGlowHover {
+            0% { text-shadow: 0 0 10px red; }
+            50% { text-shadow: 0 0 20px blue; }
+            100% { text-shadow: 0 0 10px gold; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateZ(100px) translateY(0px); }
+            50% { transform: translateZ(100px) translateY(-10px); }
+            100% { transform: translateZ(100px) translateY(0px); }
+        }
+        
+        .theme-switcher.clicked {
+            animation: clickEffect 0.5s, logoGlowHover 1s infinite alternate, float 3s ease-in-out infinite;
+        }
+        
+        @keyframes clickEffect {
+            0% { transform: translateZ(100px) scale(1); }
+            50% { transform: translateZ(100px) scale(0.8) rotateY(180deg); }
+            100% { transform: translateZ(100px) scale(1); }
         }
         
         .comment-item {
             margin-bottom: 15px;
             padding-bottom: 15px;
             border-bottom: 1px solid #333;
+            transition: transform 0.3s;
+        }
+        
+        .comment-item:hover {
+            transform: translateZ(10px);
         }
         
         .comment-date {
@@ -172,59 +305,101 @@
         .comment-text {
             color: #fff;
         }
+        
+        /* تأثيرات ثلاثية الأبعاد إضافية */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateZ(20px) translateY(0px); }
+            50% { transform: translateZ(20px) translateY(-15px); }
+            100% { transform: translateZ(20px) translateY(0px); }
+        }
+        
+        .card-3d {
+            background: rgba(20,20,20,0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            border: 1px solid rgba(0,255,0,0.3);
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(1deg) translateZ(20px);
+            box-shadow: 0 20px 50px rgba(0,255,0,0.3);
+        }
     </style>
 </head>
 <body>
-    <div class="team-logo">AS</div>
-    
-    <header>
-        <img id="profile-img" src="img.jpg" alt="صورة أيمن">
-        <h1>أيمن أبوزيد (الامبراطور)</h1>
-    </header>
-    
-    <div class="description">
-        <p>انا ايمن ابوذيد من مصر محافظة الاسكندريه تاريخ ميلادي 2007/11/12.<br>
-        هواياتي التطور التكنولوجي وتجربه الاختراق الاخلاقي وتعلم الامن السيبراني<br>
-        والحفاظ علي امن المعلومات وتطوير برمجيات لغه بايثون.</p>
-    </div>
-    
-    <div class="social-links">
-        <a href="https://youtube.com/@alambrator_as?si=AxHk4jU5pw-KGo-R" target="_blank">
-            <img src="https://img.icons8.com/color/96/000000/youtube-play.png" alt="يوتيوب">
-        </a>
-        <a href="https://whatsapp.com/channel/0029Vasyo14F6sn0brA3PY0T" target="_blank">
-            <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="واتساب">
-        </a>
-        <a href="https://github.com/Alambrator100k" target="_blank">
-            <img src="https://img.icons8.com/ios-glyphs/96/000000/github.png" alt="جيت هاب">
-        </a>
-        <a href="https://t.me/as_bot_as" target="_blank">
-            <img src="https://img.icons8.com/color/96/000000/telegram-app.png" alt="تلجرام">
-        </a>
-        <a href="https://alambratoras.blogspot.com/?m=1" target="_blank">
-            <img src="https://img.icons8.com/color/96/000000/blogger.png" alt="بلوجر">
-        </a>
-    </div>
-    
-    <div id="counter">عدد الزيارات: <span id="visit-count">0</span></div>
-    
-    <div id="comments">
-        <h3 style="text-align: center;">أضف تعليق:</h3>
-        <form id="comment-form">
-            <textarea name="comment" required placeholder="اكتب تعليقك هنا..."></textarea>
-            <button type="submit">إرسال</button>
-        </form>
-    </div>
-    
-    <div class="comments-section">
-        <h3 style="text-align: center;">التعليقات:</h3>
-        <div id="comments-display">لا توجد تعليقات حتى الآن</div>
+    <div class="scene">
+        <div class="theme-switcher" id="themeSwitcher">AS</div>
+        
+        <header class="floating">
+            <img id="profile-img" src="img.jpg" alt="صورة أيمن">
+            <h1>أيمن أبوزيد (الامبراطور)</h1>
+        </header>
+        
+        <div class="description card-3d">
+            <p>انا ايمن ابوذيد من مصر محافظة الاسكندريه تاريخ ميلادي 2007/11/12.<br>
+            هواياتي التطور التكنولوجي وتجربه الاختراق الاخلاقي وتعلم الامن السيبراني<br>
+            والحفاظ علي امن المعلومات وتطوير برمجيات لغه بايثون.</p>
+        </div>
+        
+        <!-- أزرار التواصل -->
+        <div class="contact-buttons">
+            <button class="contact-btn whatsapp-btn" onclick="window.open('https://wa.me/qr/ZXYW3OTCX35TO1', '_blank')">
+                <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="واتساب">
+                تواصل واتساب
+            </button>
+            
+            <button class="contact-btn telegram-btn" onclick="window.open('https://t.me/A_S_10k', '_blank')">
+                <img src="https://img.icons8.com/color/48/000000/telegram-app.png" alt="تلجرام">
+                تواصل تلجرام
+            </button>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://youtube.com/@alambrator_as?si=AxHk4jU5pw-KGo-R" target="_blank">
+                <img src="https://img.icons8.com/color/96/000000/youtube-play.png" alt="يوتيوب">
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vasyo14F6sn0brA3PY0T" target="_blank">
+                <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="واتساب">
+            </a>
+            <a href="https://github.com/Alambrator100k" target="_blank">
+                <img src="https://img.icons8.com/ios-glyphs/96/000000/github.png" alt="جيت هاب">
+            </a>
+            <a href="https://t.me/as_bot_as" target="_blank">
+                <img src="https://img.icons8.com/color/96/000000/telegram-app.png" alt="تلجرام">
+            </a>
+            <a href="https://alambratoras.blogspot.com/?m=1" target="_blank">
+                <img src="https://img.icons8.com/color/96/000000/blogger.png" alt="بلوجر">
+            </a>
+        </div>
+        
+        <div id="counter" class="card-3d" style="max-width: 200px;">عدد الزيارات: <span id="visit-count">0</span></div>
+        
+        <div id="comments" class="card-3d">
+            <h3 style="text-align: center;">أضف تعليق:</h3>
+            <form id="comment-form">
+                <textarea name="comment" required placeholder="اكتب تعليقك هنا..."></textarea>
+                <button type="submit">إرسال</button>
+            </form>
+        </div>
+        
+        <div class="comments-section card-3d">
+            <h3 style="text-align: center;">التعليقات:</h3>
+            <div id="comments-display">لا توجد تعليقات حتى الآن</div>
+        </div>
     </div>
     
     <canvas id="matrix"></canvas>
     
     <script>
-        // تأثير المصفوفة
+        // تأثير المصفوفة ثلاثي الأبعاد
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         
@@ -241,24 +416,72 @@
         const columns = Math.floor(canvas.width / fontSize);
         const drops = Array(columns).fill(1);
         
+        // متغير لتحديد لون المصفوفة الحالي
+        let matrixColor = '#0f0'; // أخضر افتراضي
+        
         function drawMatrix() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#0f0';
-            ctx.font = `${fontSize}px monospace`;
             
+            // إضافة تأثير عمق للرسوم
             for (let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                const depth = Math.random() * 0.8 + 0.2; // قيمة العمق بين 0.2 و 1
+                
+                // تغيير اللون حسب العمق
+                const colorValue = matrixColor === '#0f0' ? 
+                    Math.floor(50 + depth * 205) : // إذا كان اللون أخضر
+                    matrixColor === '#00f' ? 
+                    Math.floor(50 + depth * 205) : // إذا كان اللون أزرق
+                    Math.floor(100 + depth * 155); // إذا كان اللون أحمر
+                
+                ctx.fillStyle = matrixColor === '#0f0' ? 
+                    `rgba(0, ${colorValue}, 0, ${depth})` : 
+                    matrixColor === '#00f' ? 
+                    `rgba(0, 0, ${colorValue}, ${depth})` : 
+                    `rgba(${colorValue}, 0, 0, ${depth})`;
+                
+                // تغيير حجم الخط حسب العمق
+                const currentFontSize = fontSize * (0.5 + depth * 0.5);
+                ctx.font = `${currentFontSize}px monospace`;
+                
+                // إزاحة الحروف حسب العمق لمحاكاة المنظور
+                const xOffset = (1 - depth) * 40;
+                ctx.fillText(text, i * fontSize + xOffset, drops[i] * fontSize);
                 
                 if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
+            
+            // إضافة تأثيرات إضافية ثلاثية الأبعاد
+            requestAnimationFrame(drawMatrix);
         }
         
-        setInterval(drawMatrix, 50);
+        drawMatrix();
+
+        // تغيير لون المصفوقة عند النقر على زر AS
+        const themeSwitcher = document.getElementById('themeSwitcher');
+        themeSwitcher.addEventListener('click', function() {
+            // تأثير النقر
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 500);
+            
+            // تغيير اللون بين الأخضر والأزرق والأحمر
+            if (matrixColor === '#0f0') {
+                matrixColor = '#00f'; // أزرق
+            } else if (matrixColor === '#00f') {
+                matrixColor = '#f00'; // أحمر
+            } else {
+                matrixColor = '#0f0'; // أخضر
+            }
+            
+            // تغيير لون النص حسب اللون الجديد
+            this.style.color = matrixColor;
+        });
 
         // عداد الزيارات (يستخدم localStorage للتخزين المحلي)
         function updateVisitCount() {
@@ -294,7 +517,8 @@
                 commentsDisplay.innerHTML = '';
                 commentsArray.forEach(comment => {
                     const commentDiv = document.createElement('div');
-                    commentDiv.className = 'comment-item';
+                    commentDiv.className = 'comment-item card-3d';
+                    commentDiv.style.transform = 'translateZ(10px)';
                     
                     const dateDiv = document.createElement('div');
                     dateDiv.className = 'comment-date';
@@ -396,4 +620,4 @@
         });
     </script>
 </body>
-    </html>
+                </html>
