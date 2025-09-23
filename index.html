@@ -15,837 +15,991 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    * {margin:0;padding:0;box-sizing:border-box;font-family:'Tajawal',sans-serif;}
-    body {background:#000;color:#fff;line-height:1.6;overflow-x:hidden;}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-    header {text-align:center;padding:20px 10px;}
-    #profile-img {max-width:120px;border-radius:30px;box-shadow:0 0 15px red;}
+    body {
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      perspective: 1000px;
+      min-height: 100vh;
+    }
 
-    h1 {font-size:1.3rem;margin:10px 0;color:#fff;text-shadow:0 0 10px rgba(255,255,255,0.5);}
-    .description {text-align:center;padding:12px;margin:15px auto;max-width:600px;
-      background:rgba(0,0,0,0.7);border-radius:10px;box-shadow:0 0 20px rgba(0,255,0,0.3);
-      font-size:0.9rem;}
+    .scene {
+      width: 100%;
+      min-height: 100vh;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      position: relative;
+      padding-top: 20px;
+    }
 
-    <style>  
-        * {  
-            margin: 0;  
-            padding: 0;  
-            box-sizing: border-box;  
-            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;  
-        }  body {  
-        background-color: #000;  
-        color: #fff;  
-        line-height: 1.6;  
-        overflow-x: hidden;  
-        perspective: 1000px;  
-        height: 100vh;  
-    }  
-      
-    .scene {  
-        width: 100%;  
-        height: 100%;  
-        transform-style: preserve-3d;  
-        transition: transform 0.5s;  
-        position: relative;  
-        padding-top: 20px;  
-    }  
-      
-    header {  
-        text-align: center;  
-        padding: 30px 20px 20px;  
-        transform: translateZ(50px);  
-        margin-top: 20px;  
-        position: relative;  
-    }  
-      
-    .profile-container {  
-        display: flex;  
-        justify-content: center;  
-        align-items: center;  
-        gap: 20px;  
-        margin-bottom: 15px;  
-        position: relative; /* إضافة هذه الخاصية */  
-    }  
-      
-    #profile-img {  
-        max-width: 150px;  
-        border-radius: 40px;  
-        box-shadow: 0 0 20px red;  
-        transition: transform 0.5s;  
-    }  
-      
-    #profile-img:hover {  
-        transform: rotateY(20deg) scale(1.05);  
-    }  
-      
-    h1 {  
-        font-size: 1.5rem;  
-        margin-bottom: 8px;  
-        color: #fff;  
-        text-shadow: 0 0 10px rgba(255,255,255,0.5);  
-    }  
-      
-    .description {  
-        text-align: center;  
-        padding: 0 20px;  
-        margin: 15px auto;  
-        max-width: 650px;  
-        transform: translateZ(30px);  
-        background: rgba(0,0,0,0.7);  
-        border-radius: 12px;  
-        padding: 15px;  
-        box-shadow: 0 0 25px rgba(0,255,0,0.3);  
-        font-size: 0.9rem;  
-        line-height: 1.7;  
-    }  
-      
-    .social-links {  
-        display: flex;  
-        justify-content: center;  
-        gap: 12px;  
-        margin: 18px 0;  
-        flex-wrap: wrap;  
-        transform: translateZ(40px);  
-    }  
-      
-    .social-links a {  
-        display: inline-block;  
-        width: 42px;  
-        height: 42px;  
-        border-radius: 50%;  
-        background: #00ff00;  
-        padding: 4px;  
-        box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);  
-        transition: all 0.3s;  
-        transform-style: preserve-3d;  
-    }  
-      
-    .social-links a img {  
-        width: 100%;  
-        height: 100%;  
-        object-fit: contain;  
-        border-radius: 50%;  
-    }  
-      
-    .social-links a:hover {  
-        transform: scale(1.15) rotateY(20deg);  
-        box-shadow: 0 0 18px rgba(0, 255, 0, 0.8);  
-    }  
-      
-    /* أزرار التواصل */  
-    .contact-buttons {  
-        display: flex;  
-        justify-content: center;  
-        gap: 12px;  
-        margin-bottom: 15px;  
-        flex-wrap: wrap;  
-    }  
-      
-    .contact-btn {  
-        color: white;  
-        border: none;  
-        padding: 7px 14px;  
-        border-radius: 18px;  
-        font-weight: bold;  
-        display: flex;  
-        align-items: center;  
-        gap: 6px;  
-        cursor: pointer;  
-        transition: all 0.3s;  
-        transform-style: preserve-3d;  
-        min-width: 150px;  
-        justify-content: center;  
-        font-size: 0.85rem;  
-    }  
-      
-    .whatsapp-btn {  
-        background: #25D366;  
-        box-shadow: 0 0 12px rgba(37, 211, 102, 0.5);  
-    }  
-      
-    .telegram-btn {  
-        background: #0088cc;  
-        box-shadow: 0 0 12px rgba(0, 136, 204, 0.5);  
-    }  
-      
+    header {
+      text-align: center;
+      padding: 30px 20px 20px;
+      transform: translateZ(50px);
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 15px;
+      position: relative;
+      flex-direction: column;
+    }
+
+    #profile-img {
+      max-width: 150px;
+      width: 100%;
+      border-radius: 40px;
+      box-shadow: 0 0 20px #ff3366;
+      transition: transform 0.5s;
+    }
+
+    #profile-img:hover {
+      transform: rotateY(20deg) scale(1.05);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .description {
+      text-align: center;
+      padding: 0 20px;
+      margin: 15px auto;
+      max-width: 650px;
+      transform: translateZ(30px);
+      background: rgba(20, 20, 20, 0.8);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      border: 1px solid rgba(0, 255, 0, 0.2);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 18px 0;
+      flex-wrap: wrap;
+      transform: translateZ(40px);
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #00ff00;
+      padding: 4px;
+      box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+      transition: all 0.3s;
+      transform-style: preserve-3d;
+    }
+
+    .social-links a img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.15) rotateY(20deg);
+      box-shadow: 0 0 18px rgba(0, 255, 0, 0.8);
+    }
+
+    /* أزرار التواصل */
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      transform-style: preserve-3d;
+      min-width: 150px;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .whatsapp-btn {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      box-shadow: 0 0 12px rgba(37, 211, 102, 0.5);
+    }
+
+    .telegram-btn {
+      background: linear-gradient(135deg, #0088cc, #005580);
+      box-shadow: 0 0 12px rgba(0, 136, 204, 0.5);
+    }
+
     /* زر متجر الخدمات */
     .store-btn {
-        background: linear-gradient(45deg, #ff3366, #8822ff);
-        box-shadow: 0 0 12px rgba(136, 34, 255, 0.5);
+      background: linear-gradient(135deg, #ff3366, #8822ff);
+      box-shadow: 0 0 12px rgba(136, 34, 255, 0.5);
     }
-      
-    .contact-btn:hover {  
-        transform: translateY(-3px) scale(1.05);  
-    }  
-      
-    .whatsapp-btn:hover {  
-        box-shadow: 0 4px 18px rgba(37, 211, 102, 0.8);  
-    }  
-      
-    .telegram-btn:hover {  
-        box-shadow: 0 4px 18px rgba(0, 136, 204, 0.8);  
-    }  
-      
+
+    .contact-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .whatsapp-btn:hover {
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.8);
+    }
+
+    .telegram-btn:hover {
+      box-shadow: 0 4px 18px rgba(0, 136, 204, 0.8);
+    }
+
     .store-btn:hover {
-        box-shadow: 0 4px 18px rgba(136, 34, 255, 0.8);
+      box-shadow: 0 4px 18px rgba(136, 34, 255, 0.8);
     }
-      
-    .contact-btn img {  
-        width: 18px;  
-        height: 18px;  
-    }  
-      
-    #counter {  
-        text-align: center;  
-        font-size: 0.8rem;  
-        color: #aaa;  
-        margin: 10px 0;  
-        transform: translateZ(20px);  
-    }  
-      
-    #comments {  
-        max-width: 500px;  
-        margin: 0 auto 25px;  
-        padding: 0 15px;  
-        transform: translateZ(30px);  
-    }  
-      
-    #comments h3, .comments-section h3 {  
-        font-size: 0.95rem;  
-        margin-bottom: 8px;  
-        text-align: center;  
-    }  
-      
-    textarea {  
-        width: 100%;  
-        padding: 10px;  
-        border-radius: 10px;  
-        border: 1px solid #333;  
-        background: rgba(0, 0, 0, 0.5);  
-        color: #fff;  
-        margin: 8px 0;  
-        resize: vertical;  
-        min-height: 80px;  
-        font-size: 0.85rem;  
-        transition: transform 0.3s, box-shadow 0.3s;  
-    }  
-      
-    textarea:focus {  
-        transform: translateZ(15px);  
-        box-shadow: 0 0 15px rgba(0,255,255,0.5);  
-        outline: none;  
-    }  
-      
-    button[type="submit"] {  
-        background: linear-gradient(45deg, #ff3366, #8822ff);  
-        color: white;  
-        border: none;  
-        padding: 7px 18px;  
-        border-radius: 18px;  
-        cursor: pointer;  
-        font-weight: bold;  
-        display: block;  
-        margin: 10px auto;  
-        transition: all 0.3s;  
-        transform-style: preserve-3d;  
-        font-size: 0.85rem;  
-    }  
-      
-    button[type="submit"]:hover {  
-        transform: translateY(-3px) rotateX(8deg);  
-        box-shadow: 0 4px 12px rgba(136, 34, 255, 0.4);  
-    }  
-      
-    .comments-section {  
-        background: rgba(30, 30, 30, 0.7);  
-        border-radius: 12px;  
-        padding: 12px;  
-        margin: 20px auto;  
-        max-width: 550px;  
-        transform: translateZ(20px);  
-        transition: transform 0.4s;  
-    }  
-      
-    .comments-section:hover {  
-        transform: translateZ(25px) rotateX(4deg);  
-    }  
-      
-    .comments-section pre {  
-        white-space: pre-wrap;  
-        word-wrap: break-word;  
-        font-family: 'Tajawal', sans-serif;  
-        font-size: 0.85rem;  
-    }  
-      
-    canvas {  
-        position: fixed;  
-        top: 0;  
-        left: 0;  
-        z-index: -1;  
-        width: 100%;  
-        height: 100%;  
-    }  
-      
-    .theme-switcher {  
-        position: absolute;  
-        left: 20px;  
-        top: 10px;  
-        font-size: 20px;  
-        font-weight: bold;  
-        color: #fff;  
-        animation: logoGlow 3s infinite alternate;  
-        transform: translateZ(80px);  
-        cursor: pointer;  
-        background: rgba(0,0,0,0.7);  
-        padding: 4px 10px;  
-        border-radius: 16px;  
-        border: 1px solid rgba(255,255,255,0.3);  
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);  
-        z-index: 10;  
-    }  
-      
-    .theme-switcher:hover {  
-        animation: logoGlowHover 1s infinite alternate, float 3s ease-in-out infinite;  
-        transform: translateZ(80px) scale(1.1);  
-        box-shadow: 0 0 25px rgba(255,255,255,0.5);  
-    }  
-      
-    @keyframes logoGlow {  
-        0% { text-shadow: 0 0 4px red; transform: translateZ(80px) rotateY(0deg); }  
-        50% { text-shadow: 0 0 12px blue; transform: translateZ(80px) rotateY(180deg); }  
-        100% { text-shadow: 0 0 4px gold; transform: translateZ(80px) rotateY(360deg); }  
-    }  
-      
-    @keyframes logoGlowHover {  
-        0% { text-shadow: 0 0 8px red; }  
-        50% { text-shadow: 0 0 16px blue; }  
-        100% { text-shadow: 0 0 8px gold; }  
-    }  
-      
-    @keyframes float {  
-        0% { transform: translateZ(80px) translateY(0px); }  
-        50% { transform: translateZ(80px) translateY(-6px); }  
-        100% { transform: translateZ(80px) translateY(0px); }  
-    }  
-      
-    .theme-switcher.clicked {  
-        animation: clickEffect 0.5s, logoGlowHover 1s infinite alternate, float 3s ease-in-out infinite;  
-    }  
-      
-    @keyframes clickEffect {  
-        0% { transform: translateZ(80px) scale(1); }  
-        50% { transform: translateZ(80px) scale(0.8) rotateY(180deg); }  
-        100% { transform: translateZ(80px) scale(1); }  
-    }  
-      
-    .comment-item {  
-        margin-bottom: 10px;  
-        padding-bottom: 10px;  
-        border-bottom: 1px solid #333;  
-        transition: transform 0.3s;  
-    }  
-      
-    .comment-item:hover {  
-        transform: translateZ(8px);  
-    }  
-      
-    .comment-date {  
-        color: #aaa;  
-        font-size: 0.7rem;  
-        margin-bottom: 4px;  
-    }  
-      
-    .comment-text {  
-        color: #fff;  
-        font-size: 0.85rem;  
-    }  
-      
-    /* تأثيرات ثلاثية الأبعاد إضافية */  
-    .floating {  
-        animation: floating 5s ease-in-out infinite;  
-    }  
-      
-    @keyframes floating {  
-        0% { transform: translateZ(15px) translateY(0px); }  
-        50% { transform: translateZ(15px) translateY(-10px); }  
-        100% { transform: translateZ(15px) translateY(0px); }  
-    }  
-      
-    .card-3d {  
-        background: rgba(20,20,20,0.8);  
-        border-radius: 10px;  
-        padding: 12px;  
-        margin: 12px auto;  
-        box-shadow: 0 6px 20px rgba(0,0,0,0.5);  
-        transform-style: preserve-3d;  
-        transition: transform 0.4s;  
-        border: 1px solid rgba(0,255,0,0.3);  
-    }  
-      
-    .card-3d:hover {  
-        transform: rotateY(1deg) translateZ(15px);  
-        box-shadow: 0 12px 35px rgba(0,255,0,0.3);  
+
+    .contact-btn img {
+      width: 18px;
+      height: 18px;
     }
-    
+
+    #counter {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+      margin: 10px 0;
+      transform: translateZ(20px);
+      background: rgba(20, 20, 20, 0.8);
+      border-radius: 10px;
+      padding: 8px 15px;
+      max-width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(0, 255, 0, 0.2);
+    }
+
+    #comments {
+      max-width: 500px;
+      margin: 0 auto 25px;
+      padding: 0 15px;
+      transform: translateZ(30px);
+    }
+
+    #comments h3, .comments-section h3 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      margin: 8px 0;
+      resize: vertical;
+      min-height: 80px;
+      font-size: 0.85rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    textarea:focus {
+      transform: translateZ(15px);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+      outline: none;
+      border-color: #00ff00;
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(135deg, #ff3366, #8822ff);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-weight: bold;
+      display: block;
+      margin: 10px auto;
+      transition: all 0.3s;
+      transform-style: preserve-3d;
+      font-size: 0.85rem;
+      min-width: 120px;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-3px) rotateX(8deg);
+      box-shadow: 0 4px 12px rgba(136, 34, 255, 0.4);
+    }
+
+    .comments-section {
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 20px auto;
+      max-width: 550px;
+      transform: translateZ(20px);
+      transition: transform 0.4s;
+      border: 1px solid rgba(0, 255, 0, 0.2);
+    }
+
+    .comments-section:hover {
+      transform: translateZ(25px) rotateX(4deg);
+    }
+
+    .comments-section pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.85rem;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .theme-switcher {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      animation: logoGlow 3s infinite alternate;
+      transform: translateZ(80px);
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 4px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 10;
+    }
+
+    .theme-switcher:hover {
+      animation: logoGlowHover 1s infinite alternate, float 3s ease-in-out infinite;
+      transform: translateZ(80px) scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes logoGlow {
+      0% { text-shadow: 0 0 4px #ff3366; transform: translateZ(80px) rotateY(0deg); }
+      50% { text-shadow: 0 0 12px #8822ff; transform: translateZ(80px) rotateY(180deg); }
+      100% { text-shadow: 0 0 4px #00ff00; transform: translateZ(80px) rotateY(360deg); }
+    }
+
+    @keyframes logoGlowHover {
+      0% { text-shadow: 0 0 8px #ff3366; }
+      50% { text-shadow: 0 0 16px #8822ff; }
+      100% { text-shadow: 0 0 8px #00ff00; }
+    }
+
+    @keyframes float {
+      0% { transform: translateZ(80px) translateY(0px); }
+      50% { transform: translateZ(80px) translateY(-6px); }
+      100% { transform: translateZ(80px) translateY(0px); }
+    }
+
+    .theme-switcher.clicked {
+      animation: clickEffect 0.5s, logoGlowHover 1s infinite alternate, float 3s ease-in-out infinite;
+    }
+
+    @keyframes clickEffect {
+      0% { transform: translateZ(80px) scale(1); }
+      50% { transform: translateZ(80px) scale(0.8) rotateY(180deg); }
+      100% { transform: translateZ(80px) scale(1); }
+    }
+
+    .comment-item {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #333;
+      transition: transform 0.3s;
+    }
+
+    .comment-item:hover {
+      transform: translateZ(8px);
+    }
+
+    .comment-date {
+      color: #aaa;
+      font-size: 0.7rem;
+      margin-bottom: 4px;
+    }
+
+    .comment-text {
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    /* تأثيرات ثلاثية الأبعاد إضافية */
+    .floating {
+      animation: floating 5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% { transform: translateZ(15px) translateY(0px); }
+      50% { transform: translateZ(15px) translateY(-10px); }
+      100% { transform: translateZ(15px) translateY(0px); }
+    }
+
+    .card-3d {
+      background: rgba(20, 20, 20, 0.8);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 12px auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      transform-style: preserve-3d;
+      transition: transform 0.4s;
+      border: 1px solid rgba(0, 255, 0, 0.3);
+    }
+
+    .card-3d:hover {
+      transform: rotateY(1deg) translateZ(15px);
+      box-shadow: 0 12px 35px rgba(0, 255, 0, 0.3);
+    }
+
     /* نمط ردود المشرف */
     .admin-reply {
-        background-color: rgba(0, 100, 255, 0.2);
-        border-right: 3px solid #0064ff;
-        padding: 8px;
-        margin-top: 5px;
-        border-radius: 0 8px 8px 0;
+      background-color: rgba(0, 100, 255, 0.2);
+      border-right: 3px solid #0064ff;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 0 8px 8px 0;
     }
-    
+
     .admin-reply .reply-date {
-        color: #aaa;
-        font-size: 0.65rem;
-        margin-bottom: 3px;
+      color: #aaa;
+      font-size: 0.65rem;
+      margin-bottom: 3px;
     }
-    
+
     .admin-reply .reply-text {
-        color: #aad;
-        font-size: 0.8rem;
+      color: #aad;
+      font-size: 0.8rem;
     }
-</style>
 
-</head>  
-<body>  
-    <div class="scene">  
-        <header class="floating">  
-            <div class="profile-container">  
-                <img id="profile-img" src="img.jpg" alt="صورة أيمن">  
-                <div class="theme-switcher" id="themeSwitcher">AS</div>  
-            </div>  
-            <h1>أيمن أبوزيد (الامبراطور)</h1>  
-        </header>  <div class="description card-3d">  
-        <p>الاسم: أيمن أبوذيد من الاسكندريه– مصر.<br>الاهتمامات: التطور التكنولوجي، الاختراق الأخلاقي. <br>  
-        الأمن السيبراني، أمن المعلومات، تطوير برمجيات بلغة PY & html & JS
-</p>  
-    </div>  
+    /* استعلامات الوسائط للتجاوب مع الأجهزة المختلفة */
+    @media (max-width: 768px) {
+      .profile-container {
+        flex-direction: column;
+        gap: 15px;
+      }
       
-    <!-- أزرار التواصل -->  
+      #profile-img {
+        max-width: 120px;
+      }
+      
+      h1 {
+        font-size: 1.3rem;
+      }
+      
+      .description {
+        font-size: 0.85rem;
+        padding: 12px;
+        margin: 10px 15px;
+      }
+      
+      .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-btn {
+        width: 90%;
+        max-width: 280px;
+        padding: 12px;
+      }
+      
+      .theme-switcher {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-bottom: 10px;
+      }
+      
+      .social-links a {
+        width: 38px;
+        height: 38px;
+      }
+      
+      #comments {
+        padding: 0 10px;
+      }
+      
+      .comments-section {
+        margin: 15px 10px;
+        padding: 10px;
+      }
+    }
 
-  <!-- أزرار التواصل بترتيب جديد -->
-  <div class="contact-buttons">
-    <button class="contact-btn store-btn" onclick="window.open('https://alambrator100k.github.io/a-store-/', '_blank')">
-      <img src="https://img.icons8.com/color/48/000000/shop.png" alt="متجر">
-      متجر خدمات الامبراطور
-    </button>
+    @media (max-width: 480px) {
+      header {
+        padding: 20px 10px 10px;
+      }
+      
+      #profile-img {
+        max-width: 100px;
+        border-radius: 30px;
+      }
+      
+      h1 {
+        font-size: 1.2rem;
+      }
+      
+      .description {
+        font-size: 0.8rem;
+        padding: 10px;
+        margin: 8px 10px;
+      }
+      
+      .contact-btn {
+        font-size: 0.8rem;
+        min-width: 130px;
+        padding: 10px;
+      }
+      
+      .social-links a {
+        width: 36px;
+        height: 36px;
+      }
+      
+      textarea {
+        font-size: 0.8rem;
+        min-height: 70px;
+      }
+      
+      button[type="submit"] {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+      }
+      
+      .comments-section {
+        font-size: 0.8rem;
+      }
+    }
 
-    <button class="contact-btn whatsapp-btn" onclick="window.open('https://wa.me/qr/ZXYW3OTCX35TO1', '_blank')">
-      <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="واتساب">
-      تواصل واتساب
-    </button>
+    @media (max-width: 320px) {
+      h1 {
+        font-size: 1.1rem;
+      }
+      
+      .description {
+        font-size: 0.75rem;
+      }
+      
+      .contact-btn {
+        font-size: 0.75rem;
+        min-width: 120px;
+      }
+    }
 
-    <button class="contact-btn telegram-btn" onclick="window.open('https://t.me/A_S_10k', '_blank')">
-      <img src="https://img.icons8.com/color/48/000000/telegram-app.png" alt="تلجرام">
-      تواصل تلجرام
-    </button>
-  </div>
+    /* تحسينات للأجهزة الكبيرة */
+    @media (min-width: 1200px) {
+      .scene {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    }
+
+    /* تحسينات للوضع الأفقي على الأجهزة المحمولة */
+    @media (max-height: 500px) and (orientation: landscape) {
+      header {
+        padding: 10px 20px;
+      }
       
-    <div class="social-links">  
-        <a href="https://youtube.com/@alambrator_as?si=AxHk4jU5pw-KGo-R" target="_blank">  
-            <img src="https://img.icons8.com/color/96/000000/youtube-play.png" alt="يوتيوب">  
-        </a>  
-        <a href="https://whatsapp.com/channel/0029Vasyo14F6sn0brA3PY0T" target="_blank">  
-            <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="واتساب">  
-        </a>  
-        <a href="https://github.com/Alambrator100k" target="_blank">  
-            <img src="https://img.icons8.com/ios-glyphs/96/000000/github.png" alt="جيت هاب">  
-        </a>  
-        <a href="https://t.me/as_bot_as" target="_blank">  
-            <img src="https://img.icons8.com/color/96/000000/telegram-app.png" alt="تلجرام">  
-        </a>  
-        <a href="https://alambratoras.blogspot.com/?m=1" target="_blank">  
-            <img src="https://img.icons8.com/color/96/000000/blogger.png" alt="بلوجر">  
-        </a>  
-    </div>  
+      .profile-container {
+        flex-direction: row;
+        gap: 20px;
+      }
       
-    <div id="counter" class="card-3d" style="max-width: 160px;">عدد الزيارات: <span id="visit-count">0</span></div>  
+      #profile-img {
+        max-width: 80px;
+      }
       
+      .description {
+        margin: 10px auto;
+        padding: 10px 15px;
+      }
+    }
+
+    /* تحسينات إضافية للأداء */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <header class="floating">
+      <div class="profile-container">
+        <img id="profile-img" src="img.jpg" alt="صورة أيمن">
+        <div class="theme-switcher" id="themeSwitcher">AS</div>
+      </div>
+      <h1>أيمن أبوزيد (الامبراطور)</h1>
+    </header>
+    
+    <div class="description card-3d">
+      <p>الاسم: أيمن أبوذيد من الاسكندريه– مصر.<br>الاهتمامات: التطور التكنولوجي، الاختراق الأخلاقي. <br>  
+      الأمن السيبراني، أمن المعلومات، تطوير برمجيات بلغة PY & html & JS</p>
+    </div>
+
+    <!-- أزرار التواصل بترتيب جديد -->
+    <div class="contact-buttons">
+      <button class="contact-btn store-btn" onclick="window.open('https://alambrator100k.github.io/a-store-/', '_blank')">
+        <img src="https://img.icons8.com/color/48/000000/shop.png" alt="متجر">
+        متجر خدمات الامبراطور
+      </button>
+
+      <button class="contact-btn whatsapp-btn" onclick="window.open('https://wa.me/qr/ZXYW3OTCX35TO1', '_blank')">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="واتساب">
+        تواصل واتساب
+      </button>
+
+      <button class="contact-btn telegram-btn" onclick="window.open('https://t.me/A_S_10k', '_blank')">
+        <img src="https://img.icons8.com/color/48/000000/telegram-app.png" alt="تلجرام">
+        تواصل تلجرام
+      </button>
+    </div>
+    
+    <div class="social-links">
+      <a href="https://youtube.com/@alambrator_as?si=AxHk4jU5pw-KGo-R" target="_blank">
+        <img src="https://img.icons8.com/color/96/000000/youtube-play.png" alt="يوتيوب">
+      </a>
+      <a href="https://whatsapp.com/channel/0029Vasyo14F6sn0brA3PY0T" target="_blank">
+        <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="واتساب">
+      </a>
+      <a href="https://github.com/Alambrator100k" target="_blank">
+        <img src="https://img.icons8.com/ios-glyphs/96/000000/github.png" alt="جيت هاب">
+      </a>
+      <a href="https://t.me/as_bot_as" target="_blank">
+        <img src="https://img.icons8.com/color/96/000000/telegram-app.png" alt="تلجرام">
+      </a>
+      <a href="https://alambratoras.blogspot.com/?m=1" target="_blank">
+        <img src="https://img.icons8.com/color/96/000000/blogger.png" alt="بلوجر">
+      </a>
+    </div>
+    
+    <div id="counter" class="card-3d">عدد الزيارات: <span id="visit-count">0</span></div>
+    
     <div id="comments">
-        <h3 style="text-align: center;">أضف تعليق:</h3>
-        <form id="comment-form">
-            <textarea name="comment" required placeholder="اكتب تعليقك هنا..."></textarea>
-            <button type="submit">إرسال</button>
-        </form>
+      <h3 style="text-align: center;">أضف تعليق:</h3>
+      <form id="comment-form">
+        <textarea name="comment" required placeholder="اكتب تعليقك هنا..."></textarea>
+        <button type="submit">إرسال</button>
+      </form>
     </div>
     
     <div class="comments-section">
-        <h3 style="text-align: center;">التعليقات:</h3>
-        <div id="comments-display">لا توجد تعليقات حتى الآن</div>
+      <h3 style="text-align: center;">التعليقات:</h3>
+      <div id="comments-display">لا توجد تعليقات حتى الآن</div>
     </div>
-  
-<canvas id="matrix"></canvas>  
-  
-<script>  
-    // تأثير المصفوفة ثلاثي الأبعاد  
-    const canvas = document.getElementById('matrix');  
-    const ctx = canvas.getContext('2d');  
-      
-    function resizeCanvas() {  
-        canvas.width = window.innerWidth;  
-        canvas.height = window.innerHeight;  
-    }  
-      
-    window.addEventListener('resize', resizeCanvas);  
-    resizeCanvas();  
-      
-    const chars = "@alambrator_AS//×÷√5^8g83gi#4gas*クkツ?フ&ユ#6g7je3#7%9%o~ベ0u7*#ソyノ$モ7ョロ/~»»AS";  
-    const fontSize = 12;  
-    const columns = Math.floor(canvas.width / fontSize);  
-    const drops = Array(columns).fill(1);  
-      
-    // متغير لتحديد لون المصفوفة الحالي  
-    let matrixColor = '#0f0'; // أخضر افتراضي  
-      
-    function drawMatrix() {  
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';  
-        ctx.fillRect(0, 0, canvas.width, canvas.height);  
-          
-        // إضافة تأثير عمق للرسوم  
-        for (let i = 0; i < drops.length; i++) {  
-            const text = chars[Math.floor(Math.random() * chars.length)];  
-            const depth = Math.random() * 0.8 + 0.2; // قيمة العمق بين 0.2 و 1  
-              
-            // تغيير اللون حسب العمق  
-            const colorValue = matrixColor === '#0f0' ?   
-                Math.floor(50 + depth * 205) : // إذا كان اللون أخضر  
-                matrixColor === '#00f' ?   
-                Math.floor(50 + depth * 205) : // إذا كان اللون أزرق  
-                Math.floor(100 + depth * 155); // إذا كان اللون أحمر  
-              
-            ctx.fillStyle = matrixColor === '#0f0' ?   
-                `rgba(0, ${colorValue}, 0, ${depth})` :   
-                matrixColor === '#00f' ?   
-                `rgba(0, 0, ${colorValue}, ${depth})` :   
-                `rgba(${colorValue}, 0, 0, ${depth})`;  
-              
-            // تغيير حجم الخط حسب العمق  
-            const currentFontSize = fontSize * (0.5 + depth * 0.5);  
-            ctx.font = `${currentFontSize}px monospace`;  
-              
-            // إزاحة الحروف حسب العمق لمحاكاة المنظور  
-            const xOffset = (1 - depth) * 40;  
-            ctx.fillText(text, i * fontSize + xOffset, drops[i] * fontSize);  
-              
-            if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {  
-                drops[i] = 0;  
-            }  
-            drops[i]++;  
-        }  
-          
-        // إضافة تأثيرات إضافية ثلاثية الأبعاد  
-        requestAnimationFrame(drawMatrix);  
-    }  
-      
-    drawMatrix();  
+  </div>
 
-    // تغيير لون المصفوقة عند النقر على زر AS  
-    const themeSwitcher = document.getElementById('themeSwitcher');  
-    themeSwitcher.addEventListener('click', function() {  
-        // تأثير النقر  
-        this.classList.add('clicked');  
-        setTimeout(() => {  
-            this.classList.remove('clicked');  
-        }, 500);  
-          
-        // تغيير اللون بين الأخضر والأزرق والأحمر  
-        if (matrixColor === '#0f0') {  
-            matrixColor = '#00f'; // أزرق  
-        } else if (matrixColor === '#00f') {  
-            matrixColor = '#f00'; // أحمر  
-        } else {  
-            matrixColor = '#0f0'; // أخضر  
-        }  
-          
-        // تغيير لون النص حسب اللون الجديد  
-        this.style.color = matrixColor;  
-    });  
+  <canvas id="matrix"></canvas>
 
-    // عداد الزيارات (يستخدم localStorage للتخزين المحلي)  
-    function updateVisitCount() {  
-        let visits = localStorage.getItem('visits');  
-        if (!visits) {  
-            visits = 0;  
-        }  
-        visits = parseInt(visits) + 1;  
-        localStorage.setItem('visits', visits);  
-        document.getElementById('visit-count').textContent = visits;  
+  <script>
+    // تأثير المصفوفة ثلاثي الأبعاد
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    const chars = "@alambrator_AS//×÷√5^8g83gi#4gas*クkツ?フ&ユ#6g7je3#7%9%o~ベ0u7*#ソyノ$モ7ョロ/~»»AS";
+    const fontSize = 12;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+    
+    // متغير لتحديد لون المصفوفة الحالي
+    let matrixColor = '#0f0'; // أخضر افتراضي
+    
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // إضافة تأثير عمق للرسوم
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        const depth = Math.random() * 0.8 + 0.2; // قيمة العمق بين 0.2 و 1
         
-        // إرسال إشعار بزيارة جديدة إلى بوت التلجرام
-        sendNewVisitorNotification();
-    }  
+        // تغيير اللون حسب العمق
+        const colorValue = matrixColor === '#0f0' ? 
+          Math.floor(50 + depth * 205) : // إذا كان اللون أخضر
+          matrixColor === '#00f' ? 
+          Math.floor(50 + depth * 205) : // إذا كان اللون أزرق
+          Math.floor(100 + depth * 155); // إذا كان اللون أحمر
+        
+        ctx.fillStyle = matrixColor === '#0f0' ? 
+          `rgba(0, ${colorValue}, 0, ${depth})` : 
+          matrixColor === '#00f' ? 
+          `rgba(0, 0, ${colorValue}, ${depth})` : 
+          `rgba(${colorValue}, 0, 0, ${depth})`;
+        
+        // تغيير حجم الخط حسب العمق
+        const currentFontSize = fontSize * (0.5 + depth * 0.5);
+        ctx.font = `${currentFontSize}px monospace`;
+        
+        // إزاحة الحروف حسب العمق لمحاكاة المنظور
+        const xOffset = (1 - depth) * 40;
+        ctx.fillText(text, i * fontSize + xOffset, drops[i] * fontSize);
+        
+        if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+      
+      // إضافة تأثيرات إضافية ثلاثية الأبعاد
+      requestAnimationFrame(drawMatrix);
+    }
+    
+    drawMatrix();
+
+    // تغيير لون المصفوقة عند النقر على زر AS
+    const themeSwitcher = document.getElementById('themeSwitcher');
+    themeSwitcher.addEventListener('click', function() {
+      // تأثير النقر
+      this.classList.add('clicked');
+      setTimeout(() => {
+        this.classList.remove('clicked');
+      }, 500);
+      
+      // تغيير اللون بين الأخضر والأزرق والأحمر
+      if (matrixColor === '#0f0') {
+        matrixColor = '#00f'; // أزرق
+      } else if (matrixColor === '#00f') {
+        matrixColor = '#f00'; // أحمر
+      } else {
+        matrixColor = '#0f0'; // أخضر
+      }
+      
+      // تغيير لون النص حسب اللون الجديد
+      this.style.color = matrixColor;
+    });
+
+    // عداد الزيارات (يستخدم localStorage للتخزين المحلي)
+    function updateVisitCount() {
+      let visits = localStorage.getItem('visits');
+      if (!visits) {
+        visits = 0;
+      }
+      visits = parseInt(visits) + 1;
+      localStorage.setItem('visits', visits);
+      document.getElementById('visit-count').textContent = visits;
+      
+      // إرسال إشعار بزيارة جديدة إلى بوت التلجرام
+      sendNewVisitorNotification();
+    }
     
     // إرسال إشعار زائر جديد إلى بوت التلجرام
     async function sendNewVisitorNotification() {
-        const BOT_TOKEN = '7144838322:AAEYLHsGFavk7BAlHqfcsV5XuXvOEadS6KA';
-        const CHAT_ID = '6113061454';
+      const BOT_TOKEN = '7144838322:AAEYLHsGFavk7BAlHqfcsV5XuXvOEadS6KA';
+      const CHAT_ID = '6113061454';
+      
+      try {
+        // الحصول على عنوان IP الزائر
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const visitorIP = ipData.ip || 'غير معروف';
         
-        try {
-            // الحصول على عنوان IP الزائر
-            const ipResponse = await fetch('https://api.ipify.org?format=json');
-            const ipData = await ipResponse.json();
-            const visitorIP = ipData.ip || 'غير معروف';
-            
-            // الحصول على عدد الزيارات
-            const visits = localStorage.getItem('visits') || 1;
-            
-            // إعداد رسالة الإشعار
-            const now = new Date();
-            const formattedDate = now.toLocaleString('ar-EG', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            
-            const message = `👤 زائر جديد!\n\n` +
-                          `📅 التاريخ: ${formattedDate}\n` +
-                          `🌐 عنوان IP: ${visitorIP}\n` +
-                          `🔢 عدد الزيارات: ${visits}`;
-            
-            // إرسال الرسالة إلى بوت التلجرام
-            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            });
-            
-            const data = await response.json();
-            if (!data.ok) {
-                console.error('Failed to send visitor notification:', data);
-            }
-        } catch (error) {
-            console.error('Error sending visitor notification:', error);
+        // الحصول على عدد الزيارات
+        const visits = localStorage.getItem('visits') || 1;
+        
+        // إعداد رسالة الإشعار
+        const now = new Date();
+        const formattedDate = now.toLocaleString('ar-EG', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+        
+        const message = `👤 زائر جديد!\n\n` +
+                      `📅 التاريخ: ${formattedDate}\n` +
+                      `🌐 عنوان IP: ${visitorIP}\n` +
+                      `🔢 عدد الزيارات: ${visits}`;
+        
+        // إرسال الرسالة إلى بوت التلجرام
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+          })
+        });
+        
+        const data = await response.json();
+        if (!data.ok) {
+          console.error('Failed to send visitor notification:', data);
         }
+      } catch (error) {
+        console.error('Error sending visitor notification:', error);
+      }
     }
     
     // إدارة التعليقات وإرسالها إلى بوت تليجرام
-    const BOT_TOKEN = '7144838322:AAGKviMrikld9z5Puxuk6eAu5AmSYQ2jxuQ';
+    const BOT_TOKEN = '7144838322:AAEYLHsGFavk7BAlHqfcsV5XuXvOEadS6KA';
     const CHAT_ID = '6113061454';
     let lastCommentId = 0;
     
     // دالة لتحميل التعليقات والردود
     function loadComments() {
-        const comments = localStorage.getItem('comments');
-        const commentsDisplay = document.getElementById('comments-display');
-        
-        if (!comments || comments === '[]') {
-            commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
-            return;
+      const comments = localStorage.getItem('comments');
+      const commentsDisplay = document.getElementById('comments-display');
+      
+      if (!comments || comments === '[]') {
+        commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
+        return;
+      }
+      
+      try {
+        const commentsArray = JSON.parse(comments);
+        if (commentsArray.length === 0) {
+          commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
+          return;
         }
         
-        try {
-            const commentsArray = JSON.parse(comments);
-            if (commentsArray.length === 0) {
-                commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
-                return;
-            }
-            
-            // تحديث lastCommentId بأعلى معرف تعليق
-            lastCommentId = commentsArray.reduce((max, comment) => 
-                Math.max(max, comment.id || 0), 0);
-            
-            commentsDisplay.innerHTML = '';
-            commentsArray.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.className = 'comment-item';
-                commentDiv.dataset.commentId = comment.id;
-                
-                const dateDiv = document.createElement('div');
-                dateDiv.className = 'comment-date';
-                dateDiv.textContent = comment.date;
-                
-                const textDiv = document.createElement('div');
-                textDiv.className = 'comment-text';
-                textDiv.textContent = comment.text;
-                
-                commentDiv.appendChild(dateDiv);
-                commentDiv.appendChild(textDiv);
-                
-                // إضافة الردود إن وجدت
-                if (comment.replies && comment.replies.length > 0) {
-                    comment.replies.forEach(reply => {
-                        const replyDiv = document.createElement('div');
-                        replyDiv.className = 'admin-reply';
-                        
-                        const replyDateDiv = document.createElement('div');
-                        replyDateDiv.className = 'reply-date';
-                        replyDateDiv.textContent = reply.date;
-                        
-                        const replyTextDiv = document.createElement('div');
-                        replyTextDiv.className = 'reply-text';
-                        replyTextDiv.textContent = reply.text;
-                        
-                        replyDiv.appendChild(replyDateDiv);
-                        replyDiv.appendChild(replyTextDiv);
-                        commentDiv.appendChild(replyDiv);
-                    });
-                }
-                
-                commentsDisplay.appendChild(commentDiv);
+        // تحديث lastCommentId بأعلى معرف تعليق
+        lastCommentId = commentsArray.reduce((max, comment) => 
+          Math.max(max, comment.id || 0), 0);
+        
+        commentsDisplay.innerHTML = '';
+        commentsArray.forEach(comment => {
+          const commentDiv = document.createElement('div');
+          commentDiv.className = 'comment-item';
+          commentDiv.dataset.commentId = comment.id;
+          
+          const dateDiv = document.createElement('div');
+          dateDiv.className = 'comment-date';
+          dateDiv.textContent = comment.date;
+          
+          const textDiv = document.createElement('div');
+          textDiv.className = 'comment-text';
+          textDiv.textContent = comment.text;
+          
+          commentDiv.appendChild(dateDiv);
+          commentDiv.appendChild(textDiv);
+          
+          // إضافة الردود إن وجدت
+          if (comment.replies && comment.replies.length > 0) {
+            comment.replies.forEach(reply => {
+              const replyDiv = document.createElement('div');
+              replyDiv.className = 'admin-reply';
+              
+              const replyDateDiv = document.createElement('div');
+              replyDateDiv.className = 'reply-date';
+              replyDateDiv.textContent = reply.date;
+              
+              const replyTextDiv = document.createElement('div');
+              replyTextDiv.className = 'reply-text';
+              replyTextDiv.textContent = reply.text;
+              
+              replyDiv.appendChild(replyDateDiv);
+              replyDiv.appendChild(replyTextDiv);
+              commentDiv.appendChild(replyDiv);
             });
-        } catch (e) {
-            commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
-        }
+          }
+          
+          commentsDisplay.appendChild(commentDiv);
+        });
+      } catch (e) {
+        commentsDisplay.innerHTML = 'لا توجد تعليقات حتى الآن';
+      }
     }
 
     // دالة لإرسال التعليق إلى بوت التلجرام
     async function sendToTelegram(commentText, commentId) {
-        const now = new Date();
-        const formattedDate = now.toLocaleString('ar-EG', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
+      const now = new Date();
+      const formattedDate = now.toLocaleString('ar-EG', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      
+      const message = `💬 تعليق جديد (ID: ${commentId}):\n${commentText}\n\n📅 التاريخ: ${formattedDate}`;
+      
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+          })
         });
         
-        const message = `💬 تعليق جديد (ID: ${commentId}):\n${commentText}\n\n📅 التاريخ: ${formattedDate}`;
-        
-        try {
-            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            });
-            
-            const data = await response.json();
-            if (!data.ok) {
-                console.error('Failed to send message to Telegram:', data);
-            }
-        } catch (error) {
-            console.error('Error sending to Telegram:', error);
+        const data = await response.json();
+        if (!data.ok) {
+          console.error('Failed to send message to Telegram:', data);
         }
+      } catch (error) {
+        console.error('Error sending to Telegram:', error);
+      }
     }
 
     // دالة للتحقق من وجود ردود جديدة من التلجرام
     async function checkForReplies() {
-        try {
-            // في الواقع، يجب أن يكون لديك ويب هوك أو نظام لاستقبال الردود من البوت
-            // هنا نستخدم localStorage لمحاكاة النظام
-            const replies = localStorage.getItem('commentReplies');
-            if (!replies) return;
-            
-            const repliesArray = JSON.parse(replies);
-            if (repliesArray.length === 0) return;
-            
-            // تحميل التعليقات الحالية
-            let existingComments = localStorage.getItem('comments');
-            if (!existingComments || existingComments === '[]') {
-                existingComments = [];
-            } else {
-                existingComments = JSON.parse(existingComments);
-            }
-            
-            let updated = false;
-            
-            // معالجة كل رد
-            repliesArray.forEach(reply => {
-                const comment = existingComments.find(c => c.id === reply.commentId);
-                if (comment) {
-                    if (!comment.replies) comment.replies = [];
-                    
-                    // التحقق من عدم وجود الرد مسبقاً
-                    const replyExists = comment.replies.some(r => 
-                        r.text === reply.text && r.date === reply.date);
-                    
-                    if (!replyExists) {
-                        comment.replies.push({
-                            text: reply.text,
-                            date: reply.date
-                        });
-                        updated = true;
-                    }
-                }
-            });
-            
-            // إذا تم تحديث أي تعليق، نقوم بحفظ التغييرات وإعادة تحميل العرض
-            if (updated) {
-                localStorage.setItem('comments', JSON.stringify(existingComments));
-                loadComments();
-                
-                // حذف الردود التي تمت معالجتها
-                localStorage.removeItem('commentReplies');
-            }
-        } catch (error) {
-            console.error('Error checking for replies:', error);
+      try {
+        // في الواقع، يجب أن يكون لديك ويب هوك أو نظام لاستقبال الردود من البوت
+        // هنا نستخدم localStorage لمحاكاة النظام
+        const replies = localStorage.getItem('commentReplies');
+        if (!replies) return;
+        
+        const repliesArray = JSON.parse(replies);
+        if (repliesArray.length === 0) return;
+        
+        // تحميل التعليقات الحالية
+        let existingComments = localStorage.getItem('comments');
+        if (!existingComments || existingComments === '[]') {
+          existingComments = [];
+        } else {
+          existingComments = JSON.parse(existingComments);
         }
+        
+        let updated = false;
+        
+        // معالجة كل رد
+        repliesArray.forEach(reply => {
+          const comment = existingComments.find(c => c.id === reply.commentId);
+          if (comment) {
+            if (!comment.replies) comment.replies = [];
+            
+            // التحقق من عدم وجود الرد مسبقاً
+            const replyExists = comment.replies.some(r => 
+              r.text === reply.text && r.date === reply.date);
+            
+            if (!replyExists) {
+              comment.replies.push({
+                text: reply.text,
+                date: reply.date
+              });
+              updated = true;
+            }
+          }
+        });
+        
+        // إذا تم تحديث أي تعليق، نقوم بحفظ التغييرات وإعادة تحميل العرض
+        if (updated) {
+          localStorage.setItem('comments', JSON.stringify(existingComments));
+          loadComments();
+          
+          // حذف الردود التي تمت معالجتها
+          localStorage.removeItem('commentReplies');
+        }
+      } catch (error) {
+        console.error('Error checking for replies:', error);
+      }
     }
 
     // إرسال تعليق جديد
     document.getElementById('comment-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const commentText = this.comment.value.trim();
-        if (commentText) {
-            const now = new Date();
-            const formattedDate = now.toLocaleString('ar-EG', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            
-            // إنشاء معرف فريد للتعليق
-            lastCommentId++;
-            const commentId = lastCommentId;
-            
-            // إرسال التعليق إلى تليجرام
-            await sendToTelegram(commentText, commentId);
-            
-            // حفظ التعليق محلياً
-            let existingComments = localStorage.getItem('comments');
-            if (!existingComments || existingComments === '[]') {
-                existingComments = [];
-            } else {
-                try {
-                    existingComments = JSON.parse(existingComments);
-                } catch {
-                    existingComments = [];
-                }
-            }
-            
-            const newComment = {
-                id: commentId,
-                text: commentText,
-                date: formattedDate,
-                replies: []
-            };
-            
-            existingComments.push(newComment);
-            localStorage.setItem('comments', JSON.stringify(existingComments));
-            this.comment.value = '';
-            loadComments();
+      e.preventDefault();
+      const commentText = this.comment.value.trim();
+      if (commentText) {
+        const now = new Date();
+        const formattedDate = now.toLocaleString('ar-EG', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+        
+        // إنشاء معرف فريد للتعليق
+        lastCommentId++;
+        const commentId = lastCommentId;
+        
+        // إرسال التعليق إلى تليجرام
+        await sendToTelegram(commentText, commentId);
+        
+        // حفظ التعليق محلياً
+        let existingComments = localStorage.getItem('comments');
+        if (!existingComments || existingComments === '[]') {
+          existingComments = [];
+        } else {
+          try {
+            existingComments = JSON.parse(existingComments);
+          } catch {
+            existingComments = [];
+          }
         }
+        
+        const newComment = {
+          id: commentId,
+          text: commentText,
+          date: formattedDate,
+          replies: []
+        };
+        
+        existingComments.push(newComment);
+        localStorage.setItem('comments', JSON.stringify(existingComments));
+        this.comment.value = '';
+        loadComments();
+      }
     });
 
     // تهيئة الصفحة والتحقق من الردود بانتظام
     window.addEventListener('DOMContentLoaded', () => {
-        updateVisitCount();
-        loadComments();
-        
-        // التحقق من الردود كل 30 ثانية
-        setInterval(checkForReplies, 30000);
+      updateVisitCount();
+      loadComments();
+      
+      // التحقق من الردود كل 30 ثانية
+      setInterval(checkForReplies, 30000);
     });
-</script>
-
-</body>  
-    </html>
+  </script>
+</body>
+  </html>
