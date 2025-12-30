@@ -1168,6 +1168,7 @@
       requestAnimationFrame(drawMatrix);
     }
     
+    
     // تأثير الأحرف العائمة في الفضاء
     function createSpaceChar() {
       if (currentTheme !== 'space') return;
@@ -1177,19 +1178,19 @@
       char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
       
       // ألوان عشوائية
-      const colors = ['#00ff00', '#ff3366', '#8822ff', '#ff9933', '#33cc33', '#0088cc'];
+      const colors = ['#00ff00', '#8822ff', '#ff9933', '#33cc33', '#0088cc'];
       char.style.color = colors[Math.floor(Math.random() * colors.length)];
       
       // مواقع عشوائية في الأسفل
       char.style.left = `${Math.random() * 100}vw`;
-      char.style.top = `100vh`;
+      char.style.top = `10vh`;
       
       // متغيرات CSS للحركة
       char.style.setProperty('--tx', Math.random() * 2 - 1);
       char.style.setProperty('--ty', Math.random() * 0.5);
       
       // حجم عشوائي
-      const size = Math.random() * 1.5 + 1;
+      const size = Math.random() * 0.5 + 1;
       char.style.fontSize = `${size}rem`;
       
       // شفافية عشوائية
@@ -1208,9 +1209,6 @@
         }
       }, duration * 1000);
     }
-
-    // Particle Network System
-    const particleCanvas = document.getElementById('particle-canvas');
     const particleCtx = particleCanvas.getContext('2d');
 
     function resizeParticleCanvas() {
