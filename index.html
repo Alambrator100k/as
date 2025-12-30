@@ -1168,7 +1168,6 @@
       requestAnimationFrame(drawMatrix);
     }
     
-    
     // تأثير الأحرف العائمة في الفضاء
     function createSpaceChar() {
       if (currentTheme !== 'space') return;
@@ -1209,6 +1208,9 @@
         }
       }, duration * 1000);
     }
+
+    // Particle Network System
+    const particleCanvas = document.getElementById('particle-canvas');
     const particleCtx = particleCanvas.getContext('2d');
 
     function resizeParticleCanvas() {
