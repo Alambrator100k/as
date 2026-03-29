@@ -2,10 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>الامبراطور - أيمن أبوزيد</title>
 
-  <!-- صورة المعاينة عند مشاركة الرابط -->
   <meta property="og:title" content="السيرة الذاتية - أيمن أبوزيد">
   <meta property="og:description" content="ملف شخصي أيمن أبوزيد (الامبراطور)">
   <meta property="og:image" content="as100k.jpg">
@@ -22,7 +21,8 @@
       --accent-color: #8822ff;
       --dark-bg: #0a0a0a;
       --card-bg: rgba(20, 20, 30, 0.7);
-      --glow-intensity: 0.8;
+      --circle-size: min(380px, 70vw, 70vh);
+      --icon-radius: calc(var(--circle-size) / 2.2);
     }
 
     * {
@@ -49,12 +49,12 @@
       min-height: 100vh;
       position: relative;
       padding-top: 20px;
+      padding-bottom: 40px;
     }
 
     header {
       text-align: center;
-      padding: 30px 20px 20px;
-      margin-top: 20px;
+      padding: 20px 20px 10px;
       position: relative;
       z-index: 10;
     }
@@ -72,12 +72,11 @@
     #profile-img {
       max-width: 180px;
       width: 100%;
-      height: 180px;
+      height: auto;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 50%;
-      box-shadow: 
-        0 0 30px var(--primary-color),
-        inset 0 0 20px rgba(0, 255, 0, 0.3);
+      box-shadow: 0 0 30px var(--primary-color), inset 0 0 20px rgba(0, 255, 0, 0.3);
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border: 3px solid transparent;
       background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--secondary-color)) border-box;
@@ -87,18 +86,14 @@
 
     #profile-img:hover {
       transform: rotateY(20deg) scale(1.08);
-      box-shadow: 
-        0 0 50px var(--primary-color),
-        inset 0 0 30px rgba(0, 255, 0, 0.5);
+      box-shadow: 0 0 50px var(--primary-color), inset 0 0 30px rgba(0, 255, 0, 0.5);
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 5vw, 2rem);
       margin-bottom: 10px;
       color: #fff;
-      text-shadow: 
-        0 0 10px var(--primary-color),
-        0 0 20px rgba(0, 255, 0, 0.5);
+      text-shadow: 0 0 10px var(--primary-color), 0 0 20px rgba(0, 255, 0, 0.5);
       position: relative;
       display: inline-block;
       padding: 0 20px;
@@ -109,8 +104,8 @@
       content: '';
       position: absolute;
       top: 50%;
-      width: 40px;
-      height: 3px;
+      width: 30px;
+      height: 2px;
       background: linear-gradient(90deg, transparent, var(--primary-color));
       transform: translateY(-50%);
     }
@@ -126,15 +121,13 @@
 
     .description {
       text-align: center;
-      padding: 25px;
-      margin: 25px auto;
+      padding: 20px;
+      margin: 20px auto;
       max-width: 700px;
       background: var(--card-bg);
       border-radius: 20px;
-      box-shadow: 
-        0 10px 40px rgba(0, 255, 0, 0.2),
-        inset 0 0 20px rgba(0, 255, 0, 0.1);
-      font-size: 1rem;
+      box-shadow: 0 10px 40px rgba(0, 255, 0, 0.2), inset 0 0 20px rgba(0, 255, 0, 0.1);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
       line-height: 1.8;
       border: 1px solid rgba(0, 255, 0, 0.2);
       position: relative;
@@ -159,15 +152,15 @@
       50% { opacity: 1; }
     }
 
-    /* تصميم جديد لأزرار التواصل */
+    /* تصميم أزرار التواصل */
     .contact-buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
       margin: 30px auto;
-      max-width: 800px;
-      padding: 0 20px;
+      max-width: 900px;
+      padding: 0 15px;
       z-index: 10;
       position: relative;
     }
@@ -175,17 +168,17 @@
     .contact-btn {
       color: white;
       border: none;
-      padding: 18px 30px;
+      padding: 12px 20px;
       border-radius: 15px;
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      min-width: 220px;
+      min-width: 180px;
       justify-content: center;
-      font-size: 1rem;
+      font-size: clamp(0.85rem, 2vw, 1rem);
       position: relative;
       overflow: hidden;
       z-index: 2;
@@ -210,7 +203,7 @@
     }
 
     .contact-btn i {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       transition: transform 0.3s;
     }
 
@@ -218,92 +211,61 @@
       transform: scale(1.2) rotate(10deg);
     }
 
-    /* أزرار محددة */
-    .projects-btn {
-      background: linear-gradient(135deg, rgba(255, 153, 51, 0.9), rgba(255, 102, 0, 0.9));
-      box-shadow: 
-        0 5px 25px rgba(255, 153, 51, 0.5),
-        inset 0 0 15px rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 153, 51, 0.3);
-    }
-
-    .services-btn {
-      background: linear-gradient(135deg, rgba(51, 204, 51, 0.9), rgba(0, 153, 0, 0.9));
-      box-shadow: 
-        0 5px 25px rgba(51, 204, 51, 0.5),
-        inset 0 0 15px rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(51, 204, 51, 0.3);
-    }
-
-    .whatsapp-btn {
-      background: linear-gradient(135deg, rgba(37, 211, 102, 0.9), rgba(18, 140, 126, 0.9));
-      box-shadow: 
-        0 5px 25px rgba(37, 211, 102, 0.5),
-        inset 0 0 15px rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(37, 211, 102, 0.3);
-    }
-
-    .telegram-btn {
-      background: linear-gradient(135deg, rgba(0, 136, 204, 0.9), rgba(0, 85, 128, 0.9));
-      box-shadow: 
-        0 5px 25px rgba(0, 136, 204, 0.5),
-        inset 0 0 15px rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(0, 136, 204, 0.3);
-    }
+    .projects-btn { background: linear-gradient(135deg, rgba(255, 153, 51, 0.9), rgba(255, 102, 0, 0.9)); box-shadow: 0 5px 25px rgba(255, 153, 51, 0.5); border: 1px solid rgba(255, 153, 51, 0.3); }
+    .services-btn { background: linear-gradient(135deg, rgba(51, 204, 51, 0.9), rgba(0, 153, 0, 0.9)); box-shadow: 0 5px 25px rgba(51, 204, 51, 0.5); border: 1px solid rgba(51, 204, 51, 0.3); }
+    .whatsapp-btn { background: linear-gradient(135deg, rgba(37, 211, 102, 0.9), rgba(18, 140, 126, 0.9)); box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5); border: 1px solid rgba(37, 211, 102, 0.3); }
+    .telegram-btn { background: linear-gradient(135deg, rgba(0, 136, 204, 0.9), rgba(0, 85, 128, 0.9)); box-shadow: 0 5px 25px rgba(0, 136, 204, 0.5); border: 1px solid rgba(0, 136, 204, 0.3); }
 
     .contact-btn:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.3),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
 
-    .projects-btn:hover {
-      box-shadow: 
-        0 15px 35px rgba(255, 153, 51, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .services-btn:hover {
-      box-shadow: 
-        0 15px 35px rgba(51, 204, 51, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .whatsapp-btn:hover {
-      box-shadow: 
-        0 15px 35px rgba(37, 211, 102, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .telegram-btn:hover {
-      box-shadow: 
-        0 15px 35px rgba(0, 136, 204, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    /* تصميم جديد لأيقونات التواصل مع الكواكب */
-    .social-galaxy {
+    /* تصميم دائرة الأيقونات المتساوية - تم إصلاح التداخل */
+    .social-circle {
       position: relative;
       width: 100%;
-      height: 400px;
-      margin: 40px auto;
+      min-height: 400px;
+      margin: 20px auto;
       z-index: 10;
-      overflow: visible;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
     }
 
-    .galaxy-center {
+    .circle-container {
+      position: relative;
+      width: var(--circle-size);
+      height: var(--circle-size);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .orbit-ring {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 255, 0, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
+      animation: rotateRing 20s linear infinite;
+    }
+
+    @keyframes rotateRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .center-core {
+      position: absolute;
+      width: clamp(60px, 15vw, 80px);
+      height: clamp(60px, 15vw, 80px);
       background: radial-gradient(circle, var(--primary-color), transparent 70%);
       border-radius: 50%;
-      box-shadow: 
-        0 0 50px var(--primary-color),
-        inset 0 0 20px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 50px var(--primary-color);
       animation: pulse 3s infinite alternate;
       display: flex;
       align-items: center;
@@ -311,32 +273,33 @@
       z-index: 2;
     }
 
-    .galaxy-center i {
-      font-size: 2rem;
+    .center-core i {
+      font-size: clamp(1.5rem, 4vw, 2rem);
       color: #000;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     }
 
     @keyframes pulse {
-      0% { transform: translate(-50%, -50%) scale(1); }
-      100% { transform: translate(-50%, -50%) scale(1.1); }
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.1); opacity: 1; }
     }
 
-    .planet {
+    /* الأيقونات على الدائرة - إصلاح التوزيع */
+    .circle-icon {
       position: absolute;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      width: clamp(55px, 13vw, 70px);
+      height: clamp(55px, 13vw, 70px);
+      border-radius: 50%;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 3;
-      top: 50%;
+      cursor: pointer;
       left: 50%;
-      transform-origin: center;
+      top: 50%;
+      margin-left: calc(clamp(55px, 13vw, 70px) / -2);
+      margin-top: calc(clamp(55px, 13vw, 70px) / -2);
     }
 
-    .planet a {
+    .circle-icon a {
       width: 100%;
       height: 100%;
       display: flex;
@@ -344,71 +307,75 @@
       justify-content: center;
       border-radius: 50%;
       text-decoration: none;
-      overflow: hidden;
-      position: relative;
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid rgba(0, 255, 0, 0.5);
-      box-shadow: 
-        0 0 20px rgba(0, 255, 0, 0.5),
-        inset 0 0 10px rgba(0, 255, 0, 0.2);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px var(--icon-color);
     }
 
-    .planet img {
-      width: 70%;
-      height: 70%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
-      transition: all 0.3s;
+    /* أيقونات Font Awesome داخل الدائرة */
+    .circle-icon i {
+      font-size: clamp(28px, 6vw, 40px);
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 0 5px currentColor);
+      color: var(--icon-color);
     }
 
-    .planet:hover {
+    /* ألوان مختلفة لكل أيقونة */
+    .circle-icon:nth-child(3) { --icon-color: #ff0000; }      /* YouTube */
+    .circle-icon:nth-child(4) { --icon-color: #25d366; }      /* WhatsApp */
+    .circle-icon:nth-child(5) { --icon-color: #ffffff; }      /* GitHub */
+    .circle-icon:nth-child(6) { --icon-color: #0088cc; }      /* Telegram */
+    .circle-icon:nth-child(7) { --icon-color: #ff9800; }      /* Blogger */
+
+    /* تأثير التوهج المتسلسل للأيقونات */
+    @keyframes iconGlowPulse {
+      0% {
+        filter: drop-shadow(0 0 2px var(--icon-color));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 20px var(--icon-color));
+        transform: scale(1.1);
+      }
+      100% {
+        filter: drop-shadow(0 0 2px var(--icon-color));
+        transform: scale(1);
+      }
+    }
+
+    .circle-icon {
+      animation: iconGlowPulse 2.5s infinite ease-in-out;
+      animation-delay: calc(var(--order) * 0.3s);
+    }
+
+    .circle-icon:hover {
+      transform: scale(1.2) !important;
       z-index: 10;
     }
 
-    .planet:hover a {
-      transform: scale(1.3);
-      border-color: var(--primary-color);
-      box-shadow: 
-        0 0 30px var(--primary-color),
-        inset 0 0 15px rgba(0, 255, 0, 0.3);
+    .circle-icon:hover a {
+      background: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 0 30px var(--icon-color);
+      border-color: var(--icon-color);
     }
 
-    .planet:hover img {
-      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
-      transform: scale(1.2);
+    .circle-icon:hover i {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 15px currentColor);
     }
 
-    /* مدارات الكواكب */
-    .orbit {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border: 1px solid rgba(0, 255, 0, 0.1);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .orbit-1 {
-      width: 250px;
-      height: 250px;
-    }
-
-    .orbit-2 {
-      width: 320px;
-      height: 320px;
-    }
-
+    /* عداد الزيارات */
     #counter {
       text-align: center;
-      font-size: 1rem;
+      font-size: clamp(0.85rem, 2vw, 1rem);
       color: #aaa;
-      margin: 20px 0;
+      margin: 20px auto;
       background: var(--card-bg);
       border-radius: 15px;
-      padding: 15px 25px;
-      max-width: 200px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 12px 20px;
+      max-width: 220px;
       border: 1px solid rgba(0, 255, 0, 0.2);
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(5px);
@@ -418,14 +385,14 @@
 
     #comments {
       max-width: 600px;
-      margin: 0 auto 35px;
+      margin: 0 auto 30px;
       padding: 0 20px;
       z-index: 10;
       position: relative;
     }
 
     #comments h3, .comments-section h3 {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 3vw, 1.2rem);
       margin-bottom: 15px;
       text-align: center;
       color: var(--primary-color);
@@ -434,23 +401,21 @@
 
     textarea {
       width: 100%;
-      padding: 15px;
+      padding: 12px;
       border-radius: 15px;
       border: 1px solid rgba(0, 255, 0, 0.3);
       background: rgba(10, 10, 20, 0.7);
       color: #fff;
       margin: 10px 0;
       resize: vertical;
-      min-height: 120px;
-      font-size: 1rem;
+      min-height: 100px;
+      font-size: clamp(0.9rem, 2vw, 1rem);
       transition: all 0.3s;
       backdrop-filter: blur(5px);
     }
 
     textarea:focus {
-      box-shadow: 
-        0 0 25px rgba(0, 255, 0, 0.5),
-        inset 0 0 10px rgba(0, 255, 0, 0.2);
+      box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
       outline: none;
       border-color: var(--primary-color);
     }
@@ -459,31 +424,15 @@
       background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
       color: white;
       border: none;
-      padding: 15px 30px;
+      padding: 12px 25px;
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
       display: block;
       margin: 15px auto;
       transition: all 0.3s;
-      font-size: 1rem;
-      min-width: 150px;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    button[type="submit"]::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-      opacity: 0;
-      transition: opacity 0.3s;
-      z-index: -1;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      min-width: 140px;
     }
 
     button[type="submit"]:hover {
@@ -491,21 +440,15 @@
       box-shadow: 0 10px 25px rgba(136, 34, 255, 0.5);
     }
 
-    button[type="submit"]:hover::before {
-      opacity: 1;
-    }
-
     .comments-section {
       background: var(--card-bg);
       border-radius: 20px;
-      padding: 25px;
-      margin: 30px auto;
+      padding: 20px;
+      margin: 20px auto;
       max-width: 700px;
       border: 1px solid rgba(0, 255, 0, 0.2);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(10px);
-      z-index: 10;
-      position: relative;
     }
 
     .comment-item {
@@ -513,7 +456,7 @@
       padding-bottom: 15px;
       border-bottom: 1px solid rgba(0, 255, 0, 0.2);
       transition: transform 0.3s;
-      padding: 15px;
+      padding: 12px;
       border-radius: 10px;
       background: rgba(0, 0, 0, 0.2);
     }
@@ -525,7 +468,7 @@
 
     .comment-date {
       color: #aaa;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -534,15 +477,14 @@
 
     .comment-text {
       color: #fff;
-      font-size: 1rem;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
       line-height: 1.6;
     }
 
-    /* نمط ردود المشرف */
     .admin-reply {
       background-color: rgba(0, 100, 255, 0.15);
       border-right: 3px solid #0064ff;
-      padding: 12px;
+      padding: 10px;
       margin-top: 10px;
       border-radius: 0 10px 10px 0;
       position: relative;
@@ -555,21 +497,10 @@
       right: -15px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1rem;
-    }
-
-    .admin-reply .reply-date {
-      color: #88aaff;
-      font-size: 0.7rem;
-      margin-bottom: 5px;
-    }
-
-    .admin-reply .reply-text {
-      color: #ccddff;
       font-size: 0.9rem;
     }
 
-    /* تصميم زر AS مع تأثيرات متقدمة */
+    /* زر AS */
     .theme-switcher {
       position: absolute;
       left: 20px;
@@ -589,9 +520,7 @@
       justify-content: center;
       width: 60px;
       height: 60px;
-      box-shadow: 
-        0 0 20px rgba(0, 255, 0, 0.5),
-        inset 0 0 10px rgba(0, 255, 0, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
     }
 
     .theme-switcher::before {
@@ -613,67 +542,30 @@
       100% { transform: rotate(360deg); }
     }
 
-    .theme-switcher:hover {
-      animation: logoGlowHover 1s infinite alternate, float 3s ease-in-out infinite;
-      transform: scale(1.15);
-      box-shadow: 
-        0 0 35px rgba(0, 255, 0, 0.8),
-        inset 0 0 15px rgba(0, 255, 0, 0.3);
-      color: #fff;
-    }
-
-    @keyframes logoGlowHover {
-      0% { text-shadow: 0 0 15px var(--primary-color); }
-      50% { text-shadow: 0 0 25px var(--accent-color); }
-      100% { text-shadow: 0 0 15px var(--secondary-color); }
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .theme-switcher.pressing {
-      animation: pressEffect 3s forwards;
-      transform: scale(0.9);
-    }
-
-    @keyframes pressEffect {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.8); }
-      100% { transform: scale(0.9); }
-    }
-
-    /* تأثيرات إضافية */
     .floating {
       animation: floating 6s ease-in-out infinite;
     }
 
     @keyframes floating {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
+      50% { transform: translateY(-10px); }
       100% { transform: translateY(0px); }
     }
 
     .card-3d {
       background: var(--card-bg);
       border-radius: 20px;
-      padding: 20px;
+      padding: 18px;
       margin: 20px auto;
-      box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.5),
-        inset 0 0 15px rgba(0, 255, 0, 0.1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(0, 255, 0, 0.3);
       backdrop-filter: blur(10px);
-      z-index: 10;
-      position: relative;
     }
 
-    /* أحرف الفضاء العائمة */
+    /* تأثيرات الفضاء */
     .space-char {
       position: fixed;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: bold;
       color: var(--primary-color);
       text-shadow: 0 0 10px currentColor;
@@ -688,26 +580,21 @@
         transform: translate(0, 100vh) rotate(0deg) scale(0.5);
         opacity: 0;
       }
-      5% {
-        opacity: 1;
-      }
-      95% {
-        opacity: 1;
-      }
+      5% { opacity: 1; }
+      95% { opacity: 1; }
       100% {
         transform: translate(calc(100vw * var(--tx)), -100px) rotate(720deg) scale(2);
         opacity: 0;
       }
     }
 
-    /* إشعار حالة الثيم */
     .theme-notification {
       position: fixed;
       top: 20px;
       right: 20px;
       background: rgba(0, 0, 0, 0.9);
       color: var(--primary-color);
-      padding: 15px 25px;
+      padding: 12px 20px;
       border-radius: 10px;
       border: 1px solid var(--primary-color);
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
@@ -718,13 +605,13 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
 
     .theme-notification.show {
       transform: translateY(0);
     }
 
-    /* إطار عرض الصفحات الداخلية */
     .page-frame {
       position: fixed;
       top: 0;
@@ -739,26 +626,23 @@
     }
 
     @keyframes frameFadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .page-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 30px;
+      padding: 15px 25px;
       background: rgba(20, 20, 30, 0.95);
       border-bottom: 2px solid rgba(0, 255, 0, 0.3);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .page-title {
-      font-size: 1.4rem;
+      font-size: clamp(1rem, 4vw, 1.2rem);
       color: var(--primary-color);
       text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
     }
@@ -767,19 +651,15 @@
       background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
       color: white;
       border: none;
-      padding: 12px 25px;
+      padding: 8px 20px;
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
       transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .close-frame:hover {
-      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-      transform: scale(1.1);
+      transform: scale(1.05);
       box-shadow: 0 5px 20px rgba(136, 34, 255, 0.5);
     }
 
@@ -795,7 +675,6 @@
       background: white;
     }
 
-    /* ستايل للثيمات */
     #matrix-canvas, #particle-canvas {
       position: fixed;
       top: 0;
@@ -806,162 +685,27 @@
       pointer-events: none;
     }
 
-    /* استعلامات الوسائط للتجاوب */
     @media (max-width: 768px) {
-      .profile-container {
-        gap: 20px;
-      }
-      
-      #profile-img {
-        max-width: 140px;
-        height: 140px;
-      }
-      
-      h1 {
-        font-size: 1.6rem;
-      }
-      
-      .description {
-        font-size: 0.9rem;
-        padding: 20px;
-        margin: 20px 15px;
-      }
-      
-      .contact-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-      }
-      
-      .contact-btn {
-        width: 90%;
-        max-width: 300px;
-        padding: 16px;
-        font-size: 0.9rem;
-        min-width: auto;
-      }
-      
-      .social-galaxy {
-        height: 300px;
-      }
-      
-      .orbit-1 {
-        width: 180px;
-        height: 180px;
-      }
-      
-      .orbit-2 {
-        width: 230px;
-        height: 230px;
-      }
-      
-      .planet {
+      .theme-switcher {
         width: 50px;
         height: 50px;
+        font-size: 20px;
+        left: 15px;
+        top: 15px;
       }
-      
-      .galaxy-center {
-        width: 60px;
-        height: 60px;
-      }
-      
-      .galaxy-center i {
-        font-size: 1.5rem;
-      }
-      
-      .theme-switcher {
-        position: relative;
-        left: auto;
-        top: auto;
-        margin: 0 auto 20px;
-        display: inline-block;
-      }
-      
-      #comments {
-        padding: 0 15px;
-      }
-      
-      .comments-section {
-        margin: 20px 15px;
-        padding: 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 20px 10px 10px;
-      }
-      
-      #profile-img {
-        max-width: 120px;
-        height: 120px;
-      }
-      
-      h1 {
-        font-size: 1.4rem;
-      }
-      
-      h1::before,
-      h1::after {
-        width: 20px;
-      }
-      
-      .description {
-        font-size: 0.85rem;
-        padding: 15px;
-        margin: 15px 10px;
-      }
-      
       .contact-btn {
-        font-size: 0.85rem;
-        padding: 14px;
-        gap: 10px;
-      }
-      
-      .social-galaxy {
-        height: 250px;
-      }
-      
-      .orbit-1 {
-        width: 140px;
-        height: 140px;
-      }
-      
-      .orbit-2 {
-        width: 180px;
-        height: 180px;
-      }
-      
-      .planet {
-        width: 40px;
-        height: 40px;
-      }
-      
-      textarea {
-        font-size: 0.9rem;
-        min-height: 100px;
-      }
-      
-      button[type="submit"] {
-        padding: 12px 25px;
-        font-size: 0.9rem;
-      }
-      
-      .comments-section {
-        font-size: 0.9rem;
-        padding: 15px;
+        min-width: 150px;
+        padding: 10px 15px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- إشعار حالة الثيم -->
   <div id="themeNotification" class="theme-notification">
     <i class="fas fa-info-circle"></i>
     <span id="themeMessage">🔴 جميع الثيمات معطلة</span>
   </div>
 
-  <!-- إطار عرض الصفحات الداخلية -->
   <div id="pageFrame" class="page-frame">
     <div class="page-header">
       <div class="page-title" id="frameTitle"></div>
@@ -986,72 +730,39 @@
     </header>
     
     <div class="description card-3d">
-      <p>الاسم: أيمن أبوذيد من الاسكندريه– مصر.<br>
+      <p>الاسم: أيمن أبوذيد من الاسكندريه – مصر.<br>
       الاهتمامات: التطور التكنولوجي، الاختراق الأخلاقي.<br>  
       الأمن السيبراني، أمن المعلومات، تطوير برمجيات بلغة PY & html & JS</p>
     </div>
 
-    <!-- أزرار التواصل -->
     <div class="contact-buttons">
       <button class="contact-btn projects-btn" onclick="openPageFrame('مشاريعي', 'https://alambrator100k.github.io/My-projects/')">
         <i class="fas fa-project-diagram"></i>
         <span>مشاريعي</span>
       </button>
-
       <button class="contact-btn services-btn" onclick="openPageFrame('طلب خدمة إلكترونية', 'https://alambrator100k.github.io/Services/')">
         <i class="fas fa-laptop-code"></i>
         <span>طلب خدمه إلكترونية</span>
       </button>
-
       <button class="contact-btn whatsapp-btn" onclick="window.open('https://wa.me/qr/ZXYW3OTCX35TO1', '_blank')">
         <i class="fab fa-whatsapp"></i>
         <span>تواصل واتساب</span>
       </button>
-
       <button class="contact-btn telegram-btn" onclick="window.open('https://t.me/A_S_10k', '_blank')">
         <i class="fab fa-telegram"></i>
         <span>تواصل تلجرام</span>
       </button>
     </div>
     
-    <!-- نظام المجرة لأيقونات التواصل -->
-    <div class="social-galaxy">
-      <div class="orbit orbit-1"></div>
-      <div class="orbit orbit-2"></div>
-      
-      <div class="galaxy-center">
-        <i class="fas fa-user-astronaut"></i>
-      </div>
-      
-      <!-- كواكب التواصل -->
-      <div class="planet" id="planet-1">
-        <a href="https://youtube.com/@alambrator_as?si=AxHk4jU5pw-KGo-R" target="_blank">
-          <img src="https://img.icons8.com/color/96/000000/youtube-play.png" alt="يوتيوب">
-        </a>
-      </div>
-      
-      <div class="planet" id="planet-2">
-        <a href="https://whatsapp.com/channel/0029Vasyo14F6sn0brA3PY0T" target="_blank">
-          <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="واتساب">
-        </a>
-      </div>
-      
-      <div class="planet" id="planet-3">
-        <a href="https://github.com/Alambrator100k" target="_blank">
-          <img src="https://img.icons8.com/ios-glyphs/96/000000/github.png" alt="جيت هاب">
-        </a>
-      </div>
-      
-      <div class="planet" id="planet-4">
-        <a href="https://t.me/as_bot_as" target="_blank">
-          <img src="https://img.icons8.com/color/96/000000/telegram-app.png" alt="تلجرام">
-        </a>
-      </div>
-      
-      <div class="planet" id="planet-5">
-        <a href="https://alambratoras.blogspot.com/?m=1" target="_blank">
-          <img src="https://img.icons8.com/color/96/000000/blogger.png" alt="بلوجر">
-        </a>
+    <!-- دائرة الأيقونات - تم إصلاح مشكلة التداخل -->
+    <div class="social-circle">
+      <div class="circle-container" id="circleContainer">
+        <div class="orbit-ring"></div>
+        <div class="center-core">
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+        
+        <!-- يتم وضع الأيقونات بواسطة JavaScript لضمان التوزيع الصحيح -->
       </div>
     </div>
     
@@ -1079,40 +790,90 @@
   <canvas id="particle-canvas"></canvas>
 
   <script>
-    // تهيئة المتغيرات
-    let currentTheme = 'none'; // none, matrix, space, particle
+    // إعداد الأيقونات في الدائرة باستخدام JavaScript لضمان التوزيع الصحيح
+    function setupCircleIcons() {
+      const container = document.getElementById('circleContainer');
+      if (!container) return;
+      
+      // حذف أي أيقونات موجودة مسبقاً (باستثناء orbit-ring و center-core)
+      const existingIcons = container.querySelectorAll('.circle-icon');
+      existingIcons.forEach(icon => icon.remove());
+      
+      const iconsData = [
+        { icon: 'fab fa-youtube', color: '#ff0000', url: 'https://youtube.com/@alambrator_as?si=AxHk4jU5pw-KGo-R', name: 'يوتيوب' },
+        { icon: 'fab fa-whatsapp', color: '#25d366', url: 'https://whatsapp.com/channel/0029Vasyo14F6sn0brA3PY0T', name: 'واتساب' },
+        { icon: 'fab fa-github', color: '#ffffff', url: 'https://github.com/Alambrator100k', name: 'جيت هاب' },
+        { icon: 'fab fa-telegram-plane', color: '#0088cc', url: 'https://t.me/as_bot_as', name: 'تلجرام' },
+        { icon: 'fab fa-blogger-b', color: '#ff9800', url: 'https://alambratoras.blogspot.com/?m=1', name: 'بلوجر' }
+      ];
+      
+      const count = iconsData.length;
+      const radius = container.offsetWidth / 2.2; // مسافة الأيقونات من المركز
+      const iconSize = Math.min(container.offsetWidth * 0.15, 70);
+      
+      iconsData.forEach((data, index) => {
+        const angle = (index * 360 / count) * (Math.PI / 180);
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'circle-icon';
+        iconDiv.style.setProperty('--icon-color', data.color);
+        iconDiv.style.setProperty('--order', index);
+        iconDiv.style.left = `calc(43% + ${x}px)`;
+        iconDiv.style.top = `calc(40% + ${y}px)`;
+        iconDiv.style.transform = 'translate(-50%, -50%)';
+        iconDiv.style.width = `${iconSize}px`;
+        iconDiv.style.height = `${iconSize}px`;
+        iconDiv.style.margin = '0';
+        
+        const link = document.createElement('a');
+        link.href = data.url;
+        link.target = '_blank';
+        
+        const iconElement = document.createElement('i');
+        iconElement.className = data.icon;
+        
+        link.appendChild(iconElement);
+        iconDiv.appendChild(link);
+        container.appendChild(iconDiv);
+      });
+    }
+    
+    // مراقبة تغيير حجم النافذة لإعادة توزيع الأيقونات
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        setupCircleIcons();
+      }, 200);
+    });
+    
+    let currentTheme = 'none';
     let pressStartTime = 0;
     let pressTimer = null;
     let spaceInterval = null;
     let particleNetwork = null;
 
-    // وظيفة فتح الإطار الداخلي
     function openPageFrame(title, url) {
       document.getElementById('frameTitle').textContent = title;
       document.getElementById('frameContent').src = url;
       document.getElementById('pageFrame').style.display = 'block';
     }
 
-    // وظيفة إغلاق الإطار الداخلي
     function closePageFrame() {
       document.getElementById('pageFrame').style.display = 'none';
       document.getElementById('frameContent').src = '';
     }
 
-    // وظيفة إظهار إشعار الثيم
     function showThemeNotification(message) {
       const notification = document.getElementById('themeNotification');
       const messageElement = document.getElementById('themeMessage');
-      
       messageElement.textContent = message;
       notification.classList.add('show');
-      
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000);
+      setTimeout(() => notification.classList.remove('show'), 3000);
     }
 
-    // تأثير المصفوفة (Matrix)
     const matrixCanvas = document.getElementById('matrix-canvas');
     const matrixCtx = matrixCanvas.getContext('2d');
     
@@ -1134,82 +895,42 @@
         matrixCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
         return;
       }
-      
-      // تأثير التلاشي
       matrixCtx.fillStyle = 'rgba(5, 5, 10, 0.05)';
       matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-      
       matrixColumns = Math.floor(matrixCanvas.width / matrixFontSize);
-      
-      // لون الثيم الأخضر فقط
-      const matrixColor = '#00ff00';
-      
       for (let i = 0; i < matrixColumns; i++) {
         const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
         const depth = Math.random() * 0.8 + 0.2;
-        
         const colorValue = Math.floor(50 + depth * 205);
         matrixCtx.fillStyle = `rgba(0, ${colorValue}, 0, ${depth})`;
-        
         const currentFontSize = matrixFontSize * (0.5 + depth * 0.5);
         matrixCtx.font = `${currentFontSize}px monospace`;
-        
-        const xOffset = (1 - depth) * 40;
-        const x = i * matrixFontSize + xOffset;
-        
-        if (matrixDrops[i] * matrixFontSize > matrixCanvas.height || Math.random() > 0.95) {
-          matrixDrops[i] = 0;
-        }
-        
+        const x = i * matrixFontSize;
+        if (matrixDrops[i] * matrixFontSize > matrixCanvas.height || Math.random() > 0.95) matrixDrops[i] = 0;
         matrixCtx.fillText(text, x, matrixDrops[i] * matrixFontSize);
         matrixDrops[i]++;
       }
-      
       requestAnimationFrame(drawMatrix);
     }
-    
-    // تأثير الأحرف العائمة في الفضاء
+
     function createSpaceChar() {
       if (currentTheme !== 'space') return;
-      
       const char = document.createElement('div');
       char.className = 'space-char';
       char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-      
-      // ألوان عشوائية
       const colors = ['#00ff00', '#8822ff', '#ff9933', '#33cc33', '#0088cc'];
       char.style.color = colors[Math.floor(Math.random() * colors.length)];
-      
-      // مواقع عشوائية في الأسفل
       char.style.left = `${Math.random() * 100}vw`;
       char.style.top = `10vh`;
-      
-      // متغيرات CSS للحركة
       char.style.setProperty('--tx', Math.random() * 2 - 1);
-      char.style.setProperty('--ty', Math.random() * 0.5);
-      
-      // حجم عشوائي
       const size = Math.random() * 0.5 + 1;
       char.style.fontSize = `${size}rem`;
-      
-      // شفافية عشوائية
-      char.style.opacity = Math.random() * 0.5 + 0.5;
-      
-      // وقت عشوائي للحركة
       const duration = Math.random() * 10 + 15;
       char.style.animationDuration = `${duration}s`;
-      
       document.body.appendChild(char);
-      
-      // إزالة الحرف بعد انتهاء الحركة
-      setTimeout(() => {
-        if (char.parentNode) {
-          char.remove();
-        }
-      }, duration * 1000);
+      setTimeout(() => { if (char.parentNode) char.remove(); }, duration * 1000);
     }
 
-    // Particle Network System
     const particleCanvas = document.getElementById('particle-canvas');
     const particleCtx = particleCanvas.getContext('2d');
 
@@ -1228,20 +949,16 @@
         this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
-        this.color = `hsl(${Math.random() * 60 + 120}, 100%, 50%)`; // ألوان بين أخضر وأزرق
+        this.color = `hsl(${Math.random() * 60 + 120}, 100%, 50%)`;
       }
-
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
-        // ارتداد عند الحواف
         if (this.x > particleCanvas.width) this.speedX = -Math.abs(this.speedX);
         if (this.x < 0) this.speedX = Math.abs(this.speedX);
         if (this.y > particleCanvas.height) this.speedY = -Math.abs(this.speedY);
         if (this.y < 0) this.speedY = Math.abs(this.speedY);
       }
-
       draw() {
         particleCtx.fillStyle = this.color;
         particleCtx.beginPath();
@@ -1253,10 +970,7 @@
     function initParticleNetwork() {
       particleNetwork = [];
       const particleCount = Math.floor((particleCanvas.width * particleCanvas.height) / 10000);
-      
-      for (let i = 0; i < particleCount; i++) {
-        particleNetwork.push(new Particle());
-      }
+      for (let i = 0; i < particleCount; i++) particleNetwork.push(new Particle());
     }
 
     function drawParticleNetwork() {
@@ -1264,27 +978,16 @@
         particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
         return;
       }
-
-      // خلفية شفافة
       particleCtx.fillStyle = 'rgba(5, 5, 10, 0.05)';
       particleCtx.fillRect(0, 0, particleCanvas.width, particleCanvas.height);
-
-      // تحديث ورسم الجسيمات
-      particleNetwork.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-
-      // رسم خطوط الاتصال بين الجسيمات القريبة
+      particleNetwork.forEach(particle => { particle.update(); particle.draw(); });
       particleCtx.strokeStyle = 'rgba(0, 255, 0, 0.1)';
       particleCtx.lineWidth = 0.5;
-
       for (let i = 0; i < particleNetwork.length; i++) {
         for (let j = i + 1; j < particleNetwork.length; j++) {
           const dx = particleNetwork[i].x - particleNetwork[j].x;
           const dy = particleNetwork[i].y - particleNetwork[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-
           if (distance < 100) {
             particleCtx.beginPath();
             particleCtx.moveTo(particleNetwork[i].x, particleNetwork[i].y);
@@ -1293,51 +996,32 @@
           }
         }
       }
-
       requestAnimationFrame(drawParticleNetwork);
     }
 
-    // إدارة الثيمات
     function setTheme(theme) {
-      // تنظيف الثيم السابق
       switch(currentTheme) {
-        case 'matrix':
-          break; // Matrix تنظف نفسها
         case 'space':
-          if (spaceInterval) {
-            clearInterval(spaceInterval);
-            spaceInterval = null;
-          }
+          if (spaceInterval) clearInterval(spaceInterval);
           document.querySelectorAll('.space-char').forEach(el => el.remove());
           break;
-        case 'particle':
-          break; // Particle تنظف نفسها
       }
-      
       currentTheme = theme;
-      
-      // تطبيق الثيم الجديد
       switch(theme) {
         case 'none':
           showThemeNotification('🔴 جميع الثيمات معطلة');
           matrixCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
           particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
           break;
-          
         case 'matrix':
           showThemeNotification('🟢 تساقط المصفوفة مفعل');
           drawMatrix();
           break;
-          
         case 'space':
           showThemeNotification('🔵 تأثير الفضاء مفعل');
           spaceInterval = setInterval(createSpaceChar, 300);
-          // إضافة أحرف في البداية
-          for (let i = 0; i < 15; i++) {
-            setTimeout(() => createSpaceChar(), i * 100);
-          }
+          for (let i = 0; i < 15; i++) setTimeout(() => createSpaceChar(), i * 100);
           break;
-          
         case 'particle':
           showThemeNotification('🟣 شبكة الجسيمات مفعلة');
           initParticleNetwork();
@@ -1346,71 +1030,23 @@
       }
     }
 
-    // نظام تحريك الكواكب
-// نظام تحريك الكواكب
-function animatePlanets() {
-    const planets = document.querySelectorAll('.planet');
-    const centerX = window.innerWidth / 2;
-    const centerY = 135; // موقع المجرة
-    
-    // الزوايا الأولية للكواكب
-    let angles = [0, 90, 180, 270, 45];
-    const radius1 = 125; // مدار الداخلي
-    const radius2 = 160; // مدار الخارجي
-    
-    function updatePlanets() {
-        // تحديث زوايا الدوران
-        angles = angles.map(angle => (angle + 0.5) % 360);
-        
-        // تطبيق المواقع
-        planets.forEach((planet, index) => {
-            const angle = angles[index] * Math.PI / 180;
-            const radius = index < 4 ? radius1 : radius2;
-            
-            const x = centerX + radius * Math.cos(angle);
-            const y = centerY + radius * Math.sin(angle);
-            
-            // وضع الكوكب في المركز الصحيح
-            planet.style.left = `${x - 30}px`;
-            planet.style.top = `${y - 30}px`;
-        });
-        
-        requestAnimationFrame(updatePlanets);
-    }
-    
-    updatePlanets();
-    
-    // إعادة ضبط المراكز عند تغيير حجم النافذة
-    window.addEventListener('resize', () => {
-        animatePlanets();
-    });
-}
-
-    // إدارة الضغط على زر AS
     const themeSwitcher = document.getElementById('themeSwitcher');
-    
     themeSwitcher.addEventListener('mousedown', startPress);
     themeSwitcher.addEventListener('touchstart', startPress);
     themeSwitcher.addEventListener('mouseup', endPress);
     themeSwitcher.addEventListener('touchend', endPress);
     themeSwitcher.addEventListener('mouseleave', cancelPress);
-    themeSwitcher.addEventListener('touchcancel', cancelPress);
     
     function startPress(e) {
       e.preventDefault();
       pressStartTime = Date.now();
       themeSwitcher.classList.add('pressing');
-      
       pressTimer = setTimeout(() => {
-        // الضغط الطويل (3 ثواني) - تخطي الثيمات
         if (Date.now() - pressStartTime >= 3000) {
           themeSwitcher.classList.remove('pressing');
-          
-          // تبديل بين الثيمات
           const themes = ['none', 'matrix', 'space', 'particle'];
           const currentIndex = themes.indexOf(currentTheme);
           const nextIndex = (currentIndex + 1) % themes.length;
-          
           setTheme(themes[nextIndex]);
         }
       }, 3000);
@@ -1419,14 +1055,9 @@ function animatePlanets() {
     function endPress() {
       clearTimeout(pressTimer);
       themeSwitcher.classList.remove('pressing');
-      
-      // الضغط القصير - تشغيل/إيقاف الثيم الحالي
       if (Date.now() - pressStartTime < 3000) {
-        if (currentTheme === 'none') {
-          setTheme('matrix');
-        } else {
-          setTheme('none');
-        }
+        if (currentTheme === 'none') setTheme('matrix');
+        else setTheme('none');
       }
     }
     
@@ -1435,119 +1066,61 @@ function animatePlanets() {
       themeSwitcher.classList.remove('pressing');
     }
 
-    // عداد الزيارات
     function updateVisitCount() {
       let visits = localStorage.getItem('visits');
-      if (!visits) {
-        visits = 0;
-      }
+      if (!visits) visits = 0;
       visits = parseInt(visits) + 1;
       localStorage.setItem('visits', visits);
       document.getElementById('visit-count').textContent = visits;
-      sendNewVisitorNotification();
     }
     
-    // إرسال إشعار زائر جديد
-    async function sendNewVisitorNotification() {
-      const BOT_TOKEN = '7144838322:AAEYLHsGFavk7BAlHqfcsV5XuXvOEadS6KA';
-      const CHAT_ID = '6113061454';
-      
-      try {
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipResponse.json();
-        const visitorIP = ipData.ip || 'غير معروف';
-        
-        const visits = localStorage.getItem('visits') || 1;
-        const now = new Date();
-        const formattedDate = now.toLocaleString('ar-EG', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        });
-        
-        const message = `👤 زائر جديد!\n\n` +
-                      `📅 التاريخ: ${formattedDate}\n` +
-                      `🌐 عنوان IP: ${visitorIP}\n` +
-                      `🔢 عدد الزيارات: ${visits}`;
-        
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-            parse_mode: 'HTML'
-          })
-        });
-      } catch (error) {
-        console.error('Error sending visitor notification:', error);
-      }
-    }
-    
-    // إدارة التعليقات
+    updateVisitCount();
+
     const BOT_TOKEN = '7144838322:AAEYLHsGFavk7BAlHqfcsV5XuXvOEadS6KA';
     const CHAT_ID = '6113061454';
     let lastCommentId = 0;
-    
-    // تحميل التعليقات
+
     function loadComments() {
       const comments = localStorage.getItem('comments');
       const commentsDisplay = document.getElementById('comments-display');
-      
       if (!comments || comments === '[]') {
         commentsDisplay.innerHTML = '<div class="comment-item"><div class="comment-text">لا توجد تعليقات حتى الآن</div></div>';
         return;
       }
-      
       try {
         const commentsArray = JSON.parse(comments);
         if (commentsArray.length === 0) {
           commentsDisplay.innerHTML = '<div class="comment-item"><div class="comment-text">لا توجد تعليقات حتى الآن</div></div>';
           return;
         }
-        
-        lastCommentId = commentsArray.reduce((max, comment) => 
-          Math.max(max, comment.id || 0), 0);
-        
+        lastCommentId = commentsArray.reduce((max, comment) => Math.max(max, comment.id || 0), 0);
         commentsDisplay.innerHTML = '';
         commentsArray.forEach(comment => {
           const commentDiv = document.createElement('div');
           commentDiv.className = 'comment-item';
-          commentDiv.dataset.commentId = comment.id;
-          
           const dateDiv = document.createElement('div');
           dateDiv.className = 'comment-date';
           dateDiv.innerHTML = `<i class="far fa-clock"></i> ${comment.date}`;
-          
           const textDiv = document.createElement('div');
           textDiv.className = 'comment-text';
           textDiv.textContent = comment.text;
-          
           commentDiv.appendChild(dateDiv);
           commentDiv.appendChild(textDiv);
-          
           if (comment.replies && comment.replies.length > 0) {
             comment.replies.forEach(reply => {
               const replyDiv = document.createElement('div');
               replyDiv.className = 'admin-reply';
-              
               const replyDateDiv = document.createElement('div');
               replyDateDiv.className = 'reply-date';
               replyDateDiv.innerHTML = `<i class="far fa-clock"></i> ${reply.date}`;
-              
               const replyTextDiv = document.createElement('div');
               replyTextDiv.className = 'reply-text';
               replyTextDiv.textContent = reply.text;
-              
               replyDiv.appendChild(replyDateDiv);
               replyDiv.appendChild(replyTextDiv);
               commentDiv.appendChild(replyDiv);
             });
           }
-          
           commentsDisplay.appendChild(commentDiv);
         });
       } catch (e) {
@@ -1555,73 +1128,32 @@ function animatePlanets() {
       }
     }
 
-    // إرسال التعليق إلى تليجرام
     async function sendToTelegram(commentText, commentId) {
       const now = new Date();
-      const formattedDate = now.toLocaleString('ar-EG', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-      
+      const formattedDate = now.toLocaleString('ar-EG');
       const message = `💬 تعليق جديد (ID: ${commentId}):\n${commentText}\n\n📅 التاريخ: ${formattedDate}`;
-      
       try {
         await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-            parse_mode: 'HTML'
-          })
+          body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'HTML' })
         });
-      } catch (error) {
-        console.error('Error sending to Telegram:', error);
-      }
+      } catch (error) { console.error('Error:', error); }
     }
 
-    // معالجة إرسال التعليق
     document.getElementById('comment-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const commentText = this.comment.value.trim();
       if (commentText) {
         const now = new Date();
-        const formattedDate = now.toLocaleString('ar-EG', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        });
-        
+        const formattedDate = now.toLocaleString('ar-EG');
         lastCommentId++;
         const commentId = lastCommentId;
-        
         await sendToTelegram(commentText, commentId);
-        
         let existingComments = localStorage.getItem('comments');
-        if (!existingComments || existingComments === '[]') {
-          existingComments = [];
-        } else {
-          try {
-            existingComments = JSON.parse(existingComments);
-          } catch {
-            existingComments = [];
-          }
-        }
-        
-        const newComment = {
-          id: commentId,
-          text: commentText,
-          date: formattedDate,
-          replies: []
-        };
-        
+        if (!existingComments || existingComments === '[]') existingComments = [];
+        else existingComments = JSON.parse(existingComments);
+        const newComment = { id: commentId, text: commentText, date: formattedDate, replies: [] };
         existingComments.push(newComment);
         localStorage.setItem('comments', JSON.stringify(existingComments));
         this.comment.value = '';
@@ -1629,23 +1161,12 @@ function animatePlanets() {
       }
     });
 
-    // تهيئة الصفحة
     window.addEventListener('DOMContentLoaded', () => {
-      updateVisitCount();
       loadComments();
-      animatePlanets(); // بدء حركة الكواكب
-      
-      // بدء جميع الأنظمة
       drawMatrix();
       drawParticleNetwork();
-      
-      // الثيم الافتراضي: معطل
       setTheme('none');
-      
-      // إعادة ضبط المراكز عند تغيير حجم النافذة
-      window.addEventListener('resize', () => {
-        animatePlanets();
-      });
+      setupCircleIcons(); // إعداد الأيقونات في الدائرة
     });
   </script>
 </body>
